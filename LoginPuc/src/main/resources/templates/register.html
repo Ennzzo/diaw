@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+    <!-- O head tem informações sobre o documento -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register page</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/register.css}">
+</head>
+
+<body>
+    <!-- O body tem informações sobre o conteúdo da página, para o usuário -->
+
+    <div class="register-container">
+
+        <div class="register-image-logo-container">
+            <img th:src="@{/images/apc-register-bg.png}"
+                 alt="Logo PUC Minas">
+        </div>
+
+        <div class="register-form-container">
+
+            <form th:action="@{/register}"
+                  method="post"
+                  class="register-form">
+
+                <h4 class="register-title">register</h4>
+
+                <!-- Mensagens de erro / logout -->
+                <p th:if="${param.error}" class="register-error-message">
+                    Usuário ou senha inválidos.
+                </p>
+                <p th:if="${param.logout}" class="register-info-message">
+                    Logout realizado com sucesso.
+                </p>
+
+                <label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="email"
+                    id="cpf"
+                    name="RG"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+<label for="username" class="sr-only">Usuário</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                    required>
+
+
+                <div class="register-button-container">
+                    <button type="submit">Entrar</button>
+                </div>
+
+                <p class="register-redirect-options">
+                    Já possui conta? <br>
+
+                    <a href="/register">Cadastre-se</a> |
+
+                    <a href="/recoverpassword">
+                        Esqueceu sua senha?
+                    </a>
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
