@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidatos - Eleições 2026 - MG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <h1>Candidatos - Eleições 2026 - MG</h1>
+    </div>
+</header>
+
+<form method="get" th:action="@{/}" class="filtros">
+    <input type="text" placeholder="" name="" id="">
+    <p>
+    <label for="Selecione Cargo Candidato:">Selecione Cargo Candidato:</label>
+    <select id="Selecione Cargo Candidato:">
+      <button>
+        <selectedcontent></selectedcontent>
+      </button>
+
+      <option value=""></option>
+      <option value="Todos">
+        <span class="icon" aria-hidden="true">Todos</span>
+        <span class="option-label">Todos</span>
+      </option>
+      <option value=""></option>
+      <option value="1ºSUPLENTE">
+        <span class="icon" aria-hidden="true">1ºSUPLENTE</span>
+        <span class="option-label">1ºSUPLENTE</span>
+      </option>
+      <option value=""></option>
+      <option value="2ºSUPLENTE">
+        <span class="icon" aria-hidden="true">2ºSUPLENTE</span>
+        <span class="option-label">2ºSUPLENTE</span>
+      </option>
+      <option value=""></option>
+      <option value="DEPUTADO ESTADUAL">
+        <span class="icon" aria-hidden="true">DEPUTADO ESTADUAL</span>
+        <span class="option-label">DEPUTADO ESTADUAL</span>
+      </option>
+      <option value=""></option>
+      <option value="DEPUTADO FEDERAL">
+        <span class="icon" aria-hidden="true">DEPUTADO FEDERAL</span>
+        <span class="option-label">DEPUTADO FEDERAL</span>
+      </option>
+      <option value="GOVERNADOR">
+        <span class="icon" aria-hidden="true">GOVERNADOR</span>
+        <span class="option-label">GOVERNADOR</span>
+      </option>
+      <option value="SENADOR">
+        <span class="icon" aria-hidden="true">SENADOR</span>
+        <span class="option-label">SENADOR</span>
+      </option>
+      <option value="VICE-GOVERNADOR">
+        <span class="icon" aria-hidden="true">VICE-GOVERNADOR</span>
+        <span class="option-label">VICE-GOVERNADOR</span>
+      </option>
+      
+      </option>
+    </select>
+  </p>
+
+  <select id="Selecione Partido Candidato">
+      <button>
+        <selectedcontent></selectedcontent>
+      </button>
+
+      <option value=""></option>
+      <option value="Todos">
+        <span class="icon" aria-hidden="true">Todos</span>
+        <span class="option-label">Todos</span>
+      </option>
+      </option>
+      <option value="MDB">
+        <span class="icon" aria-hidden="true">MDB</span>
+        <span class="option-label">MDB</span>
+      </option>
+      <option value="PDT">
+        <span class="icon" aria-hidden="true">PDT</span>
+        <span class="option-label">PDT</span>
+      </option>
+      <option value="PT">
+        <span class="icon" aria-hidden="true">PT</span>
+        <span class="option-label">PT</span>
+      </option>
+      <option value="PCdoB">
+        <span class="icon" aria-hidden="true">PCdoB</span>
+        <span class="option-label">PCdoB</span>
+      </option>
+      <option value="PSB">
+        <span class="icon" aria-hidden="true">PSB</span>
+        <span class="option-label">PSB</span>
+      </option>
+      <option value="PSDB">
+        <span class="icon" aria-hidden="true">PSDB</span>
+        <span class="option-label">PSDB</span>
+      </option>
+      <option value="AGIR">
+        <span class="icon" aria-hidden="true">AGIR</span>
+        <span class="option-label">AGIR</span>
+      </option>
+      <option value="MOBILIZA">
+        <span class="icon" aria-hidden="true">MOBILIZA</span>
+        <span class="option-label">MOBILIZA</span>
+      </option>
+    </select>
+
+    <button class="button">Filtrar</button>
+    <button class="button2">Limpar</button>
+
+</form>
+
+</body>
+</html>
