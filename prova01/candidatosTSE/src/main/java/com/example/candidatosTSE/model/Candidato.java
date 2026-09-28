@@ -1,39 +1,30 @@
-package main.java.com.example.candidatosTSE.model;
+package com.example.candidatosTSE.model;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-/**
- * Representa um candidato lido do arquivo consulta_cand_2026_MG.csv (TSE).
- * Somente os campos usados na tela estão mapeados; o CSV tem muitas outras colunas.
- */
 public class Candidato {
 
-    private String sqCandidato;      // SQ_CANDIDATO -> usado para achar a foto: FMG<SQ_CANDIDATO>_div.jpg
-    private String nrCandidato;      // NR_CANDIDATO
-    private String nomeCandidato;    // NM_CANDIDATO
-    private String nomeUrna;         // NM_URNA_CANDIDATO
-    private String cargo;            // DS_CARGO
-    private String siglaPartido;     // SG_PARTIDO
-    private String nomePartido;      // NM_PARTIDO
-    private String uf;               // SG_UF
-    private String municipio;        // NM_UE
-    private String situacaoCandidatura; // DS_SITUACAO_CANDIDATURA
-    private String genero;           // DS_GENERO
-    private String grauInstrucao;    // DS_GRAU_INSTRUCAO
-    private String ocupacao;         // DS_OCUPACAO
-    private String dtNascimento;     // DT_NASCIMENTO (formato dd/MM/yyyy)
-    private String nrCpfCandidato;   // NR_CPF_CANDIDATO -> usado para agrupar candidaturas da mesma pessoa (titular/suplente)
+    private String sqCandidato;
+    private String nrCandidato;
+    private String nomeCandidato;
+    private String nomeUrna;
+    private String cargo;
+    private String siglaPartido;
+    private String nomePartido;
+    private String uf;
+    private String municipio;
+    private String situacaoCandidatura;
+    private String genero;
+    private String grauInstrucao;
+    private String ocupacao;
+    private String dtNascimento;
+    private String nrCpfCandidato;
 
-    /**
-     * Normalmente igual a sqCandidato. Só é diferente quando esta candidatura
-     * específica não tem foto própria, mas outra candidatura da mesma pessoa
-     * (mesmo CPF, ex.: titular/suplente de Senador) tem — nesse caso apontamos
-     * para a foto dela. Ver CandidatosTseService.resolverFotosPorCpf().
-     */
     private String sqCandidatoParaFoto;
+    private boolean temFoto;
 
     public Candidato() {
     }
@@ -162,13 +153,15 @@ public class Candidato {
         this.sqCandidatoParaFoto = sqCandidatoParaFoto;
     }
 
-    /**
-     * Nome do arquivo de foto conforme o padrão do TSE: FMG<SQ_CANDIDATO>_div.jpg
-     * Ex.: SQ_CANDIDATO = 130002538303 -> FMG130002538303_div.jpg
-     *
-     * Usa sqCandidatoParaFoto quando definido (foto emprestada de outra
-     * candidatura da mesma pessoa); caso contrário, usa o próprio sqCandidato.
-     */
+    public boolean isTemFoto() {
+        return temFoto;
+    }
+
+    public void setTemFoto(boolean temFoto) {
+        this.temFoto = temFoto;
+    }
+
+    // As fotos do TSE seguem o padrao FMG<SQ_CANDIDATO>_div.jpg
     public String getNomeArquivoFoto() {
         String sq = (sqCandidatoParaFoto != null) ? sqCandidatoParaFoto : sqCandidato;
         return "FMG" + sq + "_div.jpg";
@@ -176,10 +169,7 @@ public class Candidato {
 
     private static final DateTimeFormatter FORMATO_DATA_TSE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    /**
-     * Idade calculada a partir de DT_NASCIMENTO. Retorna -1 se a data vier
-     * ausente/inválida (ex.: "#NULO"), para que a tela simplesmente não exiba nada.
-     */
+    // Retorna -1 quando a data vem vazia ou invalida, para a tela nao exibir nada
     public int getIdade() {
         if (dtNascimento == null || dtNascimento.isBlank()) {
             return -1;

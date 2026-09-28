@@ -1,4 +1,4 @@
-package main.java.com.example.candidatosTSE.service;
+package com.example.candidatosTSE.service;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import com.example.CandidatosTSE.model.Candidato;
+import com.example.candidatosTSE.model.Candidato;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -25,21 +25,11 @@ import com.opencsv.exceptions.CsvValidationException;
 
 import jakarta.annotation.PostConstruct;
 
-/**
- * Lê o CSV do TSE (consulta_cand_2026_MG.csv) uma única vez na inicialização
- * e mantém a lista de candidatos em memória para filtragem simples.
- *
- * O arquivo do TSE:
- * - separador: ";"
- * - aspas: "\""
- * - charset: ISO-8859-1 (Latin-1)
- */
 @Service
 public class CandidatosTseService {
 
     private static final String CAMINHO_CSV = "data/candidatos/consulta_cand_2026_MG.csv";
 
-    // índices das colunas no CSV (posição 0-based no header)
     private static final int COL_SG_UF = 10;
     private static final int COL_NM_UE = 12;
     private static final int COL_DS_CARGO = 14;
@@ -58,11 +48,7 @@ public class CandidatosTseService {
 
     private static final int MIN_COLUNAS = 48;
 
-    /**
-     * Pasta onde ficam as fotos, dentro de src/main/resources/static (raiz do
-     * classpath é "static/...").
-     */
-    private static final String PASTA_IMAGENS_CANDIDATOS = "static/images/candidatos/";
+    private static final String PASTA_IMAGENS = "static/images/";
 
     private List<Candidato> candidatos = new ArrayList<>();
 
@@ -110,28 +96,18 @@ public class CandidatosTseService {
             throw new RuntimeException("Erro ao ler o CSV de candidatos: " + CAMINHO_CSV, e);
         }
 
-        // Quando uma candidatura não tem foto própria, tenta usar a foto de
-        // outra candidatura da mesma pessoa (mesmo nome + número) — comum em
-        // Senador, onde titular e suplentes são registros separados no TSE.
         resolverFotosPorCpf(lista);
 
-        // ordena por nome de urna, só para ficar mais agradável na tela
+        for (Candidato c : lista) {
+            c.setTemFoto(new ClassPathResource(PASTA_IMAGENS + c.getNomeArquivoFoto()).exists());
+        }
+
         lista.sort(Comparator.comparing(Candidato::getNomeUrna, Comparator.nullsLast(String::compareTo)));
 
         this.candidatos = lista;
     }
 
-    /**
-     * Agrupa os candidatos por "nome civil + número de candidato" e, para quem
-     * não tem foto própria disponível no disco, aponta para a foto de outra
-     * candidatura da mesma pessoa (se existir).
-     *
-     * OBS: usamos nome+número em vez do CPF porque o TSE mascara o CPF (vira "-4")
-     * em algumas candidaturas — tipicamente a linha do "titular" de Senador —
-     * enquanto as linhas de suplente mantêm o CPF real. Nome civil completo e
-     * número do candidato continuam preenchidos e iguais entre titular/suplentes.
-     */
-    private void resolverFotosPorCpf(List<Candidato> lista) {
+        private void resolverFotosPorCpf(List<Candidato> lista) {
         Map<String, List<Candidato>> porPessoa = lista.stream()
                 .filter(c -> c.getNomeCandidato() != null && !c.getNomeCandidato().isBlank())
                 .filter(c -> c.getNrCandidato() != null && !c.getNrCandidato().isBlank())
@@ -162,12 +138,9 @@ public class CandidatosTseService {
         }
     }
 
-    /**
-     * Verifica se o arquivo FMG<sqCandidato>_div.jpg realmente existe no classpath.
-     */
-    private boolean fotoExisteNoDisco(String sqCandidato) {
+        private boolean fotoExisteNoDisco(String sqCandidato) {
         String nomeArquivo = "FMG" + sqCandidato + "_div.jpg";
-        return new ClassPathResource(PASTA_IMAGENS_CANDIDATOS + nomeArquivo).exists();
+        return new ClassPathResource(PASTA_IMAGENS + nomeArquivo).exists();
     }
 
     private String valor(String[] linha, int indice) {
@@ -182,10 +155,6 @@ public class CandidatosTseService {
         return candidatos;
     }
 
-    /**
-     * Filtro simples: qualquer parâmetro nulo/vazio é ignorado.
-     * A busca textual (texto) procura em nome, nome de urna e número do candidato.
-     */
     public List<Candidato> filtrar(String cargo, String partido, String texto) {
         String textoBusca = normalizar(texto);
 
@@ -210,7 +179,6 @@ public class CandidatosTseService {
         return s == null ? "" : s.trim().toLowerCase(Locale.forLanguageTag("pt-BR"));
     }
 
-    /** Lista de cargos distintos (ordenada) para popular o <select> do filtro. */
     public List<String> listarCargos() {
         return candidatos.stream()
                 .map(Candidato::getCargo)
@@ -220,7 +188,6 @@ public class CandidatosTseService {
                 .stream().toList();
     }
 
-    /** Lista de partidos distintos (siglas) para popular o <select> do filtro. */
     public List<String> listarPartidos() {
         return candidatos.stream()
                 .map(Candidato::getSiglaPartido)

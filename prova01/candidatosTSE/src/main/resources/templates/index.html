@@ -7,118 +7,101 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
   <link rel="stylesheet" th:href="@{/css/index.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
 <header class="main-header">
-    <div class="header-container">
-        <h1>Candidatos - Eleições 2026 - MG</h1>
-    </div>
+  <div class="header-container">
+    <h1><i class="fa-solid fa-check-to-slot"></i> Candidatos - Eleições 2026 - MG</h1>
+    <span class="header-fonte">Dados do TSE</span>
+  </div>
 </header>
 
-<form method="get" th:action="@{/}" class="filtros">
-    <input type="text" placeholder="" name="" id="">
-    <p>
-    <label for="Selecione Cargo Candidato:">Selecione Cargo Candidato:</label>
-    <select id="Selecione Cargo Candidato:">
-      <button>
-        <selectedcontent></selectedcontent>
-      </button>
+<main class="container">
 
-      <option value=""></option>
-      <option value="Todos">
-        <span class="icon" aria-hidden="true">Todos</span>
-        <span class="option-label">Todos</span>
-      </option>
-      <option value=""></option>
-      <option value="1ºSUPLENTE">
-        <span class="icon" aria-hidden="true">1ºSUPLENTE</span>
-        <span class="option-label">1ºSUPLENTE</span>
-      </option>
-      <option value=""></option>
-      <option value="2ºSUPLENTE">
-        <span class="icon" aria-hidden="true">2ºSUPLENTE</span>
-        <span class="option-label">2ºSUPLENTE</span>
-      </option>
-      <option value=""></option>
-      <option value="DEPUTADO ESTADUAL">
-        <span class="icon" aria-hidden="true">DEPUTADO ESTADUAL</span>
-        <span class="option-label">DEPUTADO ESTADUAL</span>
-      </option>
-      <option value=""></option>
-      <option value="DEPUTADO FEDERAL">
-        <span class="icon" aria-hidden="true">DEPUTADO FEDERAL</span>
-        <span class="option-label">DEPUTADO FEDERAL</span>
-      </option>
-      <option value="GOVERNADOR">
-        <span class="icon" aria-hidden="true">GOVERNADOR</span>
-        <span class="option-label">GOVERNADOR</span>
-      </option>
-      <option value="SENADOR">
-        <span class="icon" aria-hidden="true">SENADOR</span>
-        <span class="option-label">SENADOR</span>
-      </option>
-      <option value="VICE-GOVERNADOR">
-        <span class="icon" aria-hidden="true">VICE-GOVERNADOR</span>
-        <span class="option-label">VICE-GOVERNADOR</span>
-      </option>
-      
-      </option>
-    </select>
+  <form method="get" th:action="@{/}" class="filtros">
+
+    <div class="campo campo-busca">
+      <label for="texto">Buscar</label>
+      <input type="text" id="texto" name="texto" th:value="${texto}"
+             placeholder="Nome, nome de urna ou número">
+    </div>
+
+    <div class="campo">
+      <label for="cargo">Cargo</label>
+      <select id="cargo" name="cargo">
+        <option value="">Todos</option>
+        <option th:each="c : ${cargos}" th:value="${c}" th:text="${c}"
+                th:selected="${c == cargo}"></option>
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="partido">Partido</label>
+      <select id="partido" name="partido">
+        <option value="">Todos</option>
+        <option th:each="p : ${partidos}" th:value="${p}" th:text="${p}"
+                th:selected="${p == partido}"></option>
+      </select>
+    </div>
+
+    <div class="acoes">
+      <button type="submit" class="button"><i class="fa-solid fa-magnifying-glass"></i> Filtrar</button>
+      <a th:href="@{/}" class="button2">Limpar</a>
+    </div>
+
+  </form>
+
+  <p class="resultado-total">
+    <strong th:text="${total}">0</strong>
+    <span th:text="${total == 1} ? 'candidato encontrado' : 'candidatos encontrados'">candidatos encontrados</span>
   </p>
 
-  <select id="Selecione Partido Candidato">
-      <button>
-        <selectedcontent></selectedcontent>
-      </button>
+  <p class="vazio" th:if="${total == 0}">
+    Nenhum candidato encontrado para esse filtro.
+  </p>
 
-      <option value=""></option>
-      <option value="Todos">
-        <span class="icon" aria-hidden="true">Todos</span>
-        <span class="option-label">Todos</span>
-      </option>
-      </option>
-      <option value="MDB">
-        <span class="icon" aria-hidden="true">MDB</span>
-        <span class="option-label">MDB</span>
-      </option>
-      <option value="PDT">
-        <span class="icon" aria-hidden="true">PDT</span>
-        <span class="option-label">PDT</span>
-      </option>
-      <option value="PT">
-        <span class="icon" aria-hidden="true">PT</span>
-        <span class="option-label">PT</span>
-      </option>
-      <option value="PCdoB">
-        <span class="icon" aria-hidden="true">PCdoB</span>
-        <span class="option-label">PCdoB</span>
-      </option>
-      <option value="PSB">
-        <span class="icon" aria-hidden="true">PSB</span>
-        <span class="option-label">PSB</span>
-      </option>
-      <option value="PSDB">
-        <span class="icon" aria-hidden="true">PSDB</span>
-        <span class="option-label">PSDB</span>
-      </option>
-      <option value="AGIR">
-        <span class="icon" aria-hidden="true">AGIR</span>
-        <span class="option-label">AGIR</span>
-      </option>
-      <option value="MOBILIZA">
-        <span class="icon" aria-hidden="true">MOBILIZA</span>
-        <span class="option-label">MOBILIZA</span>
-      </option>
-    </select>
+  <section class="grade">
 
-    <button class="button">Filtrar</button>
-    <button class="button2">Limpar</button>
+    <article class="card" th:each="c : ${candidatos}">
 
-</form>
+      <div class="card-foto">
+        <img th:if="${c.temFoto}" th:src="@{'/images/' + ${c.nomeArquivoFoto}}"
+             th:alt="${c.nomeUrna}" loading="lazy">
+        <div th:unless="${c.temFoto}" class="sem-foto">
+          <i class="fa-regular fa-user"></i>
+          <span>Sem foto</span>
+        </div>
+      </div>
+
+      <div class="card-info">
+        <h2 th:text="${c.nomeUrna}">Nome de urna</h2>
+        <p class="nome-civil" th:text="${c.nomeCandidato}">Nome completo</p>
+
+        <div class="tags">
+          <span class="tag tag-numero" th:text="${c.nrCandidato}">00</span>
+          <span class="tag tag-partido" th:text="${c.siglaPartido}">PARTIDO</span>
+          <span class="tag" th:text="${c.cargo}">CARGO</span>
+        </div>
+
+        <ul class="dados">
+          <li><span>Partido</span><strong th:text="${c.nomePartido}">-</strong></li>
+          <li th:if="${c.idade > 0}"><span>Idade</span><strong th:text="${c.idade} + ' anos'">-</strong></li>
+          <li th:if="${!#strings.isEmpty(c.ocupacao)}"><span>Ocupação</span><strong th:text="${c.ocupacao}">-</strong></li>
+          <li th:if="${!#strings.isEmpty(c.grauInstrucao)}"><span>Instrução</span><strong th:text="${c.grauInstrucao}">-</strong></li>
+          <li th:if="${!#strings.isEmpty(c.genero)}"><span>Gênero</span><strong th:text="${c.genero}">-</strong></li>
+          <li><span>Local</span><strong th:text="${c.municipio} + ' / ' + ${c.uf}">-</strong></li>
+        </ul>
+      </div>
+
+    </article>
+
+  </section>
+
+</main>
 
 </body>
 </html>
