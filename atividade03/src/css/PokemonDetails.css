@@ -148,3 +148,22 @@
   color: var(--muted);
   font-size: 0.85rem;
 }
+
+@media (max-width: 600px) {
+  .modal-top img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .extra-info {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .extra-info div:last-child {
+    grid-column: span 2;
+  }
+
+  .stat-bar {
+    grid-template-columns: 90px 30px 1fr;
+  }
+}

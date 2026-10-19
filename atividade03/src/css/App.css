@@ -67,3 +67,18 @@
   background: #e3350d;
   color: #fff;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 16px;
+  }
+
+  .toolbar-actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .toolbar-actions label {
+    width: 100%;
+  }
+}
