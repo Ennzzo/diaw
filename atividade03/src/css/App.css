@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 24px;
 }
+
+.result-count {
+  margin: 14px 0;
+  color: #777;
+  font-size: 0.9rem;
+}
