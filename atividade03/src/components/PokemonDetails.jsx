@@ -1,10 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonDetails.css'
 
 function PokemonDetails({ pokemon, onClose }) {
+  const [extra, setExtra] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  // busca altura, peso e habilidades na PokéAPI
+  useEffect(() => {
+    setLoading(true)
+    setExtra(null)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`)
+      .then((res) => res.json())
+      .then((json) => setExtra(json))
+      .catch(() => setExtra(null))
+      .finally(() => setLoading(false))
+  }, [pokemon.id])
+
   useEffect(() => {
     function handleKey(e) {
       if (e.key === 'Escape') onClose()
@@ -34,6 +48,24 @@ function PokemonDetails({ pokemon, onClose }) {
               <TypeBadge key={t.id} type={t.name} />
             ))}
           </div>
+
+          {loading && <p className="info-loading">Carregando informações...</p>}
+          {!loading && extra && (
+            <div className="extra-info">
+              <div>
+                <span>Altura</span>
+                <b>{extra.height / 10} m</b>
+              </div>
+              <div>
+                <span>Peso</span>
+                <b>{extra.weight / 10} kg</b>
+              </div>
+              <div>
+                <span>Habilidades</span>
+                <b>{extra.abilities.map((a) => a.ability.name).join(', ')}</b>
+              </div>
+            </div>
+          )}
 
           <h4>Atributos</h4>
           <StatBar label="HP" value={stats.hp} color={color} />
