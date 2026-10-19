@@ -70,7 +70,7 @@ function PokemonDetails({ pokemon, isFavorite, onToggleFavorite, onClose }) {
               </div>
               <div>
                 <span>Habilidades</span>
-                <b>{extra.abilities.map((a) => a.ability.name).join(', ')}</b>
+                <b className="abilities">{extra.abilities.map((a) => a.ability.name).join(', ')}</b>
               </div>
             </div>
           )}

@@ -6,7 +6,7 @@
 }
 
 .type-filter button {
-  --type-color: #555;
+  --type-color: var(--muted);
   border: 2px solid var(--type-color);
   background: transparent;
   color: var(--type-color);

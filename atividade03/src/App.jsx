@@ -9,9 +9,15 @@ import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
 import './css/App.css'
 
+// o Mew vem sem tipo no json, entao recebe o Typeless
+const typeless = data.types.find((t) => t.id === 0)
+const allPokemons = data.pokemon.map((p) =>
+  p.types.length > 0 ? p : { ...p, types: [typeless] }
+)
+
 // so mostra no filtro os tipos que algum pokemon realmente tem
 const usedTypes = data.types.filter((type) =>
-  data.pokemon.some((p) => p.types.some((t) => t.id === type.id))
+  allPokemons.some((p) => p.types.some((t) => t.id === type.id))
 )
 
 function App() {
@@ -45,7 +51,7 @@ function App() {
     }
   }
 
-  const filtered = data.pokemon.filter((p) => {
+  const filtered = allPokemons.filter((p) => {
     const term = search.trim().toLowerCase()
     const matchSearch =
       term === '' ||
@@ -63,8 +69,8 @@ function App() {
   })
 
   function randomPokemon() {
-    const index = Math.floor(Math.random() * data.pokemon.length)
-    setSelectedPokemon(data.pokemon[index])
+    const index = Math.floor(Math.random() * allPokemons.length)
+    setSelectedPokemon(allPokemons[index])
   }
 
   return (
@@ -107,7 +113,7 @@ function App() {
             <h2 className="page-title">Treinadores</h2>
             <TrainerList
               trainers={data.trainers}
-              allPokemons={data.pokemon}
+              allPokemons={allPokemons}
               onSelectPokemon={setSelectedPokemon}
             />
           </>
