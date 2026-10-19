@@ -1,0 +1,25 @@
+.type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.type-filter button {
+  --type-color: #555;
+  border: 2px solid var(--type-color);
+  background: transparent;
+  color: var(--type-color);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.type-filter button:hover,
+.type-filter button.active {
+  background: var(--type-color);
+  color: #fff;
+}
