@@ -4,10 +4,47 @@
   padding: 24px;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
 .result-count {
-  margin: 14px 0;
   color: #777;
   font-size: 0.9rem;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.sort-select {
+  margin-left: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.random-btn {
+  background: #ffcb05;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.random-btn:hover {
+  transform: scale(1.05);
 }
 
 .page-title {

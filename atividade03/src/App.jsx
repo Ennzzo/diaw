@@ -3,6 +3,7 @@ import data from './data/pokedex-data.json'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import TypeFilter from './components/TypeFilter'
+import SortSelect from './components/SortSelect'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
@@ -17,6 +18,7 @@ function App() {
   const [page, setPage] = useState('pokedex')
   const [search, setSearch] = useState('')
   const [selectedType, setSelectedType] = useState('')
+  const [sortBy, setSortBy] = useState('id')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
 
   const filtered = data.pokemon.filter((p) => {
@@ -29,6 +31,17 @@ function App() {
     return matchSearch && matchType
   })
 
+  const sorted = [...filtered].sort((a, b) => {
+    if (sortBy === 'id') return a.id - b.id
+    if (sortBy === 'name') return a.name.localeCompare(b.name)
+    return b.stats[sortBy] - a.stats[sortBy]
+  })
+
+  function randomPokemon() {
+    const index = Math.floor(Math.random() * data.pokemon.length)
+    setSelectedPokemon(data.pokemon[index])
+  }
+
   return (
     <>
       <Header page={page} onChangePage={setPage} />
@@ -37,8 +50,16 @@ function App() {
           <>
             <SearchBar value={search} onChange={setSearch} />
             <TypeFilter types={usedTypes} selected={selectedType} onSelect={setSelectedType} />
-            <p className="result-count">{filtered.length} Pokémon encontrados</p>
-            <PokemonList pokemons={filtered} onSelect={setSelectedPokemon} />
+            <div className="toolbar">
+              <p className="result-count">{sorted.length} Pokémon encontrados</p>
+              <div className="toolbar-actions">
+                <label>
+                  Ordenar por <SortSelect value={sortBy} onChange={setSortBy} />
+                </label>
+                <button className="random-btn" onClick={randomPokemon}>🎲 Aleatório</button>
+              </div>
+            </div>
+            <PokemonList pokemons={sorted} onSelect={setSelectedPokemon} />
           </>
         ) : (
           <>
