@@ -2,12 +2,21 @@ import TypeBadge from './TypeBadge'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonCard.css'
 
-function PokemonCard({ pokemon, onSelect }) {
+function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
   const mainColor = typeColors[pokemon.types[0].name]
 
   return (
     <div className="pokemon-card" style={{ borderTopColor: mainColor }} onClick={() => onSelect(pokemon)}>
       <span className="pokemon-id">{formatId(pokemon.id)}</span>
+      <button
+        className={'fav-btn' + (isFavorite ? ' active' : '')}
+        onClick={(e) => {
+          e.stopPropagation()
+          onToggleFavorite(pokemon.id)
+        }}
+      >
+        {isFavorite ? '❤' : '♡'}
+      </button>
       <div className="pokemon-img" style={{ background: mainColor + '33' }}>
         <img src={getImage(pokemon.id)} alt={pokemon.name} loading="lazy" />
       </div>

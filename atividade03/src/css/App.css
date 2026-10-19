@@ -50,3 +50,18 @@
 .page-title {
   margin-bottom: 12px;
 }
+
+.fav-filter-btn {
+  background: transparent;
+  border: 2px solid #e3350d;
+  color: #e3350d;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.fav-filter-btn.active {
+  background: #e3350d;
+  color: #fff;
+}

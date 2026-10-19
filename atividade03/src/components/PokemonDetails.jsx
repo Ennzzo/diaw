@@ -4,7 +4,7 @@ import StatBar from './StatBar'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonDetails.css'
 
-function PokemonDetails({ pokemon, onClose }) {
+function PokemonDetails({ pokemon, isFavorite, onToggleFavorite, onClose }) {
   const [extra, setExtra] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -42,7 +42,15 @@ function PokemonDetails({ pokemon, onClose }) {
         </div>
 
         <div className="modal-body">
-          <h2>{pokemon.name}</h2>
+          <h2>
+            {pokemon.name}
+            <button
+              className={'fav-btn inline' + (isFavorite ? ' active' : '')}
+              onClick={() => onToggleFavorite(pokemon.id)}
+            >
+              {isFavorite ? '❤' : '♡'}
+            </button>
+          </h2>
           <div className="types">
             {pokemon.types.map((t) => (
               <TypeBadge key={t.id} type={t.name} />

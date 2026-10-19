@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import data from './data/pokedex-data.json'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -20,6 +20,23 @@ function App() {
   const [selectedType, setSelectedType] = useState('')
   const [sortBy, setSortBy] = useState('id')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+  const [onlyFavorites, setOnlyFavorites] = useState(false)
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('favorites')
+    return saved ? JSON.parse(saved) : []
+  })
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [favorites])
+
+  function toggleFavorite(id) {
+    if (favorites.includes(id)) {
+      setFavorites(favorites.filter((f) => f !== id))
+    } else {
+      setFavorites([...favorites, id])
+    }
+  }
 
   const filtered = data.pokemon.filter((p) => {
     const term = search.trim().toLowerCase()
@@ -28,7 +45,8 @@ function App() {
       p.name.toLowerCase().includes(term) ||
       String(p.id) === term.replace('#', '').replace(/^0+/, '')
     const matchType = selectedType === '' || p.types.some((t) => t.name === selectedType)
-    return matchSearch && matchType
+    const matchFavorite = !onlyFavorites || favorites.includes(p.id)
+    return matchSearch && matchType && matchFavorite
   })
 
   const sorted = [...filtered].sort((a, b) => {
@@ -56,10 +74,21 @@ function App() {
                 <label>
                   Ordenar por <SortSelect value={sortBy} onChange={setSortBy} />
                 </label>
+                <button
+                  className={'fav-filter-btn' + (onlyFavorites ? ' active' : '')}
+                  onClick={() => setOnlyFavorites(!onlyFavorites)}
+                >
+                  ❤ Favoritos ({favorites.length})
+                </button>
                 <button className="random-btn" onClick={randomPokemon}>🎲 Aleatório</button>
               </div>
             </div>
-            <PokemonList pokemons={sorted} onSelect={setSelectedPokemon} />
+            <PokemonList
+              pokemons={sorted}
+              favorites={favorites}
+              onSelect={setSelectedPokemon}
+              onToggleFavorite={toggleFavorite}
+            />
           </>
         ) : (
           <>
@@ -74,7 +103,12 @@ function App() {
       </main>
 
       {selectedPokemon && (
-        <PokemonDetails pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
+        <PokemonDetails
+          pokemon={selectedPokemon}
+          isFavorite={favorites.includes(selectedPokemon.id)}
+          onToggleFavorite={toggleFavorite}
+          onClose={() => setSelectedPokemon(null)}
+        />
       )}
     </>
   )

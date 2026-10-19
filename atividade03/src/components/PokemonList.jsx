@@ -1,7 +1,7 @@
 import PokemonCard from './PokemonCard'
 import '../css/PokemonList.css'
 
-function PokemonList({ pokemons, onSelect }) {
+function PokemonList({ pokemons, favorites, onSelect, onToggleFavorite }) {
   if (pokemons.length === 0) {
     return (
       <div className="empty">
@@ -14,7 +14,13 @@ function PokemonList({ pokemons, onSelect }) {
   return (
     <div className="pokemon-list">
       {pokemons.map((pokemon) => (
-        <PokemonCard key={pokemon.id} pokemon={pokemon} onSelect={onSelect} />
+        <PokemonCard
+          key={pokemon.id}
+          pokemon={pokemon}
+          isFavorite={favorites.includes(pokemon.id)}
+          onSelect={onSelect}
+          onToggleFavorite={onToggleFavorite}
+        />
       ))}
     </div>
   )
