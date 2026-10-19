@@ -1,3 +1,4 @@
+import '../css/PokemonList.css'
 import PokemonCard from './PokemonCard'
 
 function PokemonList({ pokemons }) {

@@ -1,12 +1,16 @@
 import data from './data/pokedex-data.json'
+import Header from './components/Header'
 import PokemonList from './components/PokemonList'
+import './css/App.css'
 
 function App() {
   return (
-    <div>
-      <h1>Pokédex</h1>
-      <PokemonList pokemons={data.pokemon} />
-    </div>
+    <>
+      <Header />
+      <main className="container">
+        <PokemonList pokemons={data.pokemon} />
+      </main>
+    </>
   )
 }
 
