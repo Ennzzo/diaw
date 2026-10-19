@@ -9,3 +9,4 @@ Aluno: Enzo Bambirra
 - [atividade01](./atividade01) - API REST de clima de Belo Horizonte feita com Java e Spring Boot,
   consumindo a Open-Meteo
 - [atividade02](./atividade02) - Projeto Spring Boot da adega (login)
+- [atividade03](./atividade03) - Pokédex feita com React + Vite
