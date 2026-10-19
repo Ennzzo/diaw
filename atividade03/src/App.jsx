@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar'
 import TypeFilter from './components/TypeFilter'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
+import TrainerList from './components/TrainerList'
 import './css/App.css'
 
 // so mostra no filtro os tipos que algum pokemon realmente tem
@@ -13,6 +14,7 @@ const usedTypes = data.types.filter((type) =>
 )
 
 function App() {
+  const [page, setPage] = useState('pokedex')
   const [search, setSearch] = useState('')
   const [selectedType, setSelectedType] = useState('')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
@@ -29,12 +31,25 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header page={page} onChangePage={setPage} />
       <main className="container">
-        <SearchBar value={search} onChange={setSearch} />
-        <TypeFilter types={usedTypes} selected={selectedType} onSelect={setSelectedType} />
-        <p className="result-count">{filtered.length} Pokémon encontrados</p>
-        <PokemonList pokemons={filtered} onSelect={setSelectedPokemon} />
+        {page === 'pokedex' ? (
+          <>
+            <SearchBar value={search} onChange={setSearch} />
+            <TypeFilter types={usedTypes} selected={selectedType} onSelect={setSelectedType} />
+            <p className="result-count">{filtered.length} Pokémon encontrados</p>
+            <PokemonList pokemons={filtered} onSelect={setSelectedPokemon} />
+          </>
+        ) : (
+          <>
+            <h2 className="page-title">Treinadores</h2>
+            <TrainerList
+              trainers={data.trainers}
+              allPokemons={data.pokemon}
+              onSelectPokemon={setSelectedPokemon}
+            />
+          </>
+        )}
       </main>
 
       {selectedPokemon && (

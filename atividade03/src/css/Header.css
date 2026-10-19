@@ -1,18 +1,48 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
-  padding: 18px 32px;
+  padding: 16px 32px;
   background: linear-gradient(90deg, #e3350d, #b71c1c);
   color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.header img {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
   width: 40px;
 }
 
-.header h1 {
+.logo h1 {
   font-size: 1.8rem;
   letter-spacing: 1px;
+}
+
+.header nav {
+  display: flex;
+  gap: 8px;
+}
+
+.header nav button {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.header nav button:hover,
+.header nav button.active {
+  background: #fff;
+  color: #e3350d;
 }
