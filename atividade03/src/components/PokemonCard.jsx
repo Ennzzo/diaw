@@ -2,11 +2,11 @@ import TypeBadge from './TypeBadge'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonCard.css'
 
-function PokemonCard({ pokemon }) {
+function PokemonCard({ pokemon, onSelect }) {
   const mainColor = typeColors[pokemon.types[0].name]
 
   return (
-    <div className="pokemon-card" style={{ borderTopColor: mainColor }}>
+    <div className="pokemon-card" style={{ borderTopColor: mainColor }} onClick={() => onSelect(pokemon)}>
       <span className="pokemon-id">{formatId(pokemon.id)}</span>
       <div className="pokemon-img" style={{ background: mainColor + '33' }}>
         <img src={getImage(pokemon.id)} alt={pokemon.name} loading="lazy" />

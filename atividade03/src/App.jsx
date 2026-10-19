@@ -4,6 +4,7 @@ import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import TypeFilter from './components/TypeFilter'
 import PokemonList from './components/PokemonList'
+import PokemonDetails from './components/PokemonDetails'
 import './css/App.css'
 
 // so mostra no filtro os tipos que algum pokemon realmente tem
@@ -14,6 +15,7 @@ const usedTypes = data.types.filter((type) =>
 function App() {
   const [search, setSearch] = useState('')
   const [selectedType, setSelectedType] = useState('')
+  const [selectedPokemon, setSelectedPokemon] = useState(null)
 
   const filtered = data.pokemon.filter((p) => {
     const term = search.trim().toLowerCase()
@@ -32,8 +34,12 @@ function App() {
         <SearchBar value={search} onChange={setSearch} />
         <TypeFilter types={usedTypes} selected={selectedType} onSelect={setSelectedType} />
         <p className="result-count">{filtered.length} Pokémon encontrados</p>
-        <PokemonList pokemons={filtered} />
+        <PokemonList pokemons={filtered} onSelect={setSelectedPokemon} />
       </main>
+
+      {selectedPokemon && (
+        <PokemonDetails pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
+      )}
     </>
   )
 }
