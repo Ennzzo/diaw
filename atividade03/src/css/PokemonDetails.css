@@ -12,7 +12,7 @@
 
 .modal {
   position: relative;
-  background: #fff;
+  background: var(--card);
   border-radius: 18px;
   width: 100%;
   max-width: 440px;
@@ -27,6 +27,7 @@
   right: 14px;
   border: none;
   background: rgba(255, 255, 255, 0.8);
+  color: #222;
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -81,7 +82,7 @@
 }
 
 .stat-label {
-  color: #666;
+  color: var(--muted);
 }
 
 .stat-value {
@@ -90,7 +91,7 @@
 }
 
 .stat-track {
-  background: #eee;
+  background: var(--soft);
   border-radius: 6px;
   height: 8px;
   overflow: hidden;
@@ -105,7 +106,7 @@
 .total {
   margin-top: 12px;
   text-align: right;
-  color: #666;
+  color: var(--muted);
 }
 
 @keyframes fadeIn {
@@ -126,7 +127,7 @@
 }
 
 .extra-info div {
-  background: #f4f4f4;
+  background: var(--soft);
   border-radius: 10px;
   padding: 8px;
   font-size: 0.8rem;
@@ -134,7 +135,7 @@
 
 .extra-info span {
   display: block;
-  color: #888;
+  color: var(--muted);
   margin-bottom: 2px;
 }
 
@@ -144,6 +145,6 @@
 
 .info-loading {
   margin-top: 16px;
-  color: #999;
+  color: var(--muted);
   font-size: 0.85rem;
 }

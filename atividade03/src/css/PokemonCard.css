@@ -1,6 +1,6 @@
 .pokemon-card {
   position: relative;
-  background: #fff;
+  background: var(--card);
   border-radius: 14px;
   border-top: 6px solid #ccc;
   padding: 16px;
@@ -20,7 +20,7 @@
   top: 10px;
   left: 14px;
   font-weight: bold;
-  color: #999;
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
@@ -64,11 +64,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   font-size: 0.7rem;
-  color: #666;
+  color: var(--muted);
 }
 
 .mini-stats span {
-  background: #f4f4f4;
+  background: var(--soft);
   border-radius: 6px;
   padding: 4px 0;
 }
@@ -76,7 +76,7 @@
 .mini-stats b {
   display: block;
   font-size: 0.9rem;
-  color: #222;
+  color: var(--text);
 }
 
 .fav-btn {

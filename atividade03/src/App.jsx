@@ -26,9 +26,16 @@ function App() {
     return saved ? JSON.parse(saved) : []
   })
 
+  const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark')
+
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites))
   }, [favorites])
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', darkMode)
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light')
+  }, [darkMode])
 
   function toggleFavorite(id) {
     if (favorites.includes(id)) {
@@ -62,7 +69,12 @@ function App() {
 
   return (
     <>
-      <Header page={page} onChangePage={setPage} />
+      <Header
+        page={page}
+        onChangePage={setPage}
+        darkMode={darkMode}
+        onToggleTheme={() => setDarkMode(!darkMode)}
+      />
       <main className="container">
         {page === 'pokedex' ? (
           <>

@@ -1,6 +1,6 @@
 import '../css/Header.css'
 
-function Header({ page, onChangePage }) {
+function Header({ page, onChangePage, darkMode, onToggleTheme }) {
   return (
     <header className="header">
       <div className="logo">
@@ -13,6 +13,9 @@ function Header({ page, onChangePage }) {
         </button>
         <button className={page === 'trainers' ? 'active' : ''} onClick={() => onChangePage('trainers')}>
           Treinadores
+        </button>
+        <button className="theme-btn" onClick={onToggleTheme} title="Trocar tema">
+          {darkMode ? '☀' : '🌙'}
         </button>
       </nav>
     </header>

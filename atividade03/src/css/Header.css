@@ -46,3 +46,7 @@
   background: #fff;
   color: #e3350d;
 }
+
+.header nav .theme-btn {
+  padding: 7px 12px;
+}

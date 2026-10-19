@@ -6,7 +6,7 @@
 }
 
 .trainer-card {
-  background: #fff;
+  background: var(--card);
   border-radius: 14px;
   padding: 18px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -32,14 +32,14 @@
 }
 
 .badges {
-  color: #777;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
 .trainer-subtitle {
   margin: 14px 0 8px;
   font-size: 0.85rem;
-  color: #888;
+  color: var(--muted);
 }
 
 .trainer-pokemons {
@@ -49,7 +49,7 @@
 }
 
 .trainer-pokemons button {
-  background: #f4f4f4;
+  background: var(--soft);
   border: none;
   border-radius: 10px;
   padding: 6px;
@@ -59,7 +59,7 @@
 }
 
 .trainer-pokemons button:hover {
-  background: #e8e8e8;
+  background: var(--soft-hover);
   transform: scale(1.05);
 }
 

@@ -14,7 +14,7 @@
 }
 
 .result-count {
-  color: #777;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
@@ -29,8 +29,10 @@
   margin-left: 6px;
   padding: 6px 10px;
   border-radius: 8px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--border);
   font-size: 0.9rem;
+  background: var(--card);
+  color: var(--text);
 }
 
 .random-btn {
