@@ -122,6 +122,7 @@ function App() {
 
       {selectedPokemon && (
         <PokemonDetails
+          key={selectedPokemon.id}
           pokemon={selectedPokemon}
           isFavorite={favorites.includes(selectedPokemon.id)}
           onToggleFavorite={toggleFavorite}
