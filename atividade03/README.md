@@ -2,6 +2,11 @@
 
 Atividade 03 da disciplina de Desenvolvimento e Integração de Aplicações Web (DIAW).
 
+## Dupla
+
+- Enzo Bambirra
+- Raiany Morais Ribeiro
+
 Pokédex interativa feita com React + Vite usando os dados do arquivo `pokedex-data.json` (151 Pokémon da primeira geração e 12 treinadores).
 
 ![Pokédex](./docs/pokedex.png)
