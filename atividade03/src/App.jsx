@@ -6,18 +6,19 @@ import TypeFilter from './components/TypeFilter'
 import SortSelect from './components/SortSelect'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
+import PokemonCompare from './components/PokemonCompare'
 import TrainerList from './components/TrainerList'
 import './css/App.css'
 
-// o Mew vem sem tipo no json, entao recebe o Typeless
-const typeless = data.types.find((t) => t.id === 0)
-const allPokemons = data.pokemon.map((p) =>
-  p.types.length > 0 ? p : { ...p, types: [typeless] }
+// O Mew vem sem tipo no json, entao recebe o Typeless
+const typeless = data.types ? data.types.find((t) => t.id === 0) : { id: 0, name: 'Normal' }
+const allPokemons = (data.pokemon || []).map((p) =>
+  p.types && p.types.length > 0 ? p : { ...p, types: [typeless] }
 )
 
-// so mostra no filtro os tipos que algum pokemon realmente tem
-const usedTypes = data.types.filter((type) =>
-  allPokemons.some((p) => p.types.some((t) => t.id === type.id))
+// Filtra apenas os tipos usados nos Pokémon
+const usedTypes = (data.types || []).filter((type) =>
+  allPokemons.some((p) => p.types && p.types.some((t) => t.id === type.id))
 )
 
 function App() {
@@ -26,13 +27,21 @@ function App() {
   const [selectedType, setSelectedType] = useState('')
   const [sortBy, setSortBy] = useState('id')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+  
+  // Lista de comparação (máximo 2)
+  const [compareList, setCompareList] = useState([])
+
   const [onlyFavorites, setOnlyFavorites] = useState(false)
   const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem('favorites')
-    return saved ? JSON.parse(saved) : []
+    try {
+      const saved = localStorage.getItem('favorites')
+      return saved ? JSON.parse(saved) : []
+    } catch {
+      return []
+    }
   })
 
-  const [darkMode, setDarkMode] = useState(localStorage.getItem('theme') === 'dark')
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark')
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites))
@@ -51,13 +60,25 @@ function App() {
     }
   }
 
+  function toggleCompare(pokemon) {
+    if (compareList.some((p) => p.id === pokemon.id)) {
+      setCompareList(compareList.filter((p) => p.id !== pokemon.id))
+    } else {
+      if (compareList.length >= 2) {
+        alert('Você já selecionou 2 Pokémon para comparar. Remova um primeiro!')
+        return
+      }
+      setCompareList([...compareList, pokemon])
+    }
+  }
+
   const filtered = allPokemons.filter((p) => {
     const term = search.trim().toLowerCase()
     const matchSearch =
       term === '' ||
       p.name.toLowerCase().includes(term) ||
       String(p.id) === term.replace('#', '').replace(/^0+/, '')
-    const matchType = selectedType === '' || p.types.some((t) => t.name === selectedType)
+    const matchType = selectedType === '' || (p.types && p.types.some((t) => t.name === selectedType))
     const matchFavorite = !onlyFavorites || favorites.includes(p.id)
     return matchSearch && matchType && matchFavorite
   })
@@ -65,10 +86,13 @@ function App() {
   const sorted = [...filtered].sort((a, b) => {
     if (sortBy === 'id') return a.id - b.id
     if (sortBy === 'name') return a.name.localeCompare(b.name)
-    return b.stats[sortBy] - a.stats[sortBy]
+    const statA = a.stats ? (a.stats[sortBy] || 0) : 0
+    const statB = b.stats ? (b.stats[sortBy] || 0) : 0
+    return statB - statA
   })
 
   function randomPokemon() {
+    if (allPokemons.length === 0) return
     const index = Math.floor(Math.random() * allPokemons.length)
     setSelectedPokemon(allPokemons[index])
   }
@@ -80,6 +104,12 @@ function App() {
         onChangePage={setPage}
         darkMode={darkMode}
         onToggleTheme={() => setDarkMode(!darkMode)}
+        compareCount={compareList.length}
+        onOpenCompare={() => {
+          if (compareList.length < 2) {
+            alert('Selecione 2 Pokémon nos cards usando o botão ⚔️ para comparar!')
+          }
+        }}
       />
       <main className="container">
         {page === 'pokedex' ? (
@@ -98,21 +128,30 @@ function App() {
                 >
                   ❤ Favoritos ({favorites.length})
                 </button>
+                
+                {compareList.length > 0 && (
+                  <button className="compare-btn active" onClick={() => setCompareList([])}>
+                    ⚔️ Comparando ({compareList.length}/2) [Limpar]
+                  </button>
+                )}
+
                 <button className="random-btn" onClick={randomPokemon}>🎲 Aleatório</button>
               </div>
             </div>
             <PokemonList
               pokemons={sorted}
               favorites={favorites}
+              compareList={compareList}
               onSelect={setSelectedPokemon}
               onToggleFavorite={toggleFavorite}
+              onToggleCompare={toggleCompare}
             />
           </>
         ) : (
           <>
             <h2 className="page-title">Treinadores</h2>
             <TrainerList
-              trainers={data.trainers}
+              trainers={data.trainers || []}
               allPokemons={allPokemons}
               onSelectPokemon={setSelectedPokemon}
             />
@@ -127,6 +166,14 @@ function App() {
           isFavorite={favorites.includes(selectedPokemon.id)}
           onToggleFavorite={toggleFavorite}
           onClose={() => setSelectedPokemon(null)}
+        />
+      )}
+
+      {compareList.length === 2 && (
+        <PokemonCompare
+          pokemon1={compareList[0]}
+          pokemon2={compareList[1]}
+          onClose={() => setCompareList([])}
         />
       )}
     </>

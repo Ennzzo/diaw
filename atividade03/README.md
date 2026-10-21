@@ -24,6 +24,7 @@ Pokédex interativa feita com React + Vite usando os dados do arquivo `pokedex-d
 - Tema escuro
 - Layout responsivo (desktop, tablet e celular)
 - Mensagem quando nenhum Pokémon é encontrado
+- Comparar Pokémon, mostrando qual melhor atributo entre eles através do botão ⚔️.
 
 ![Detalhes](./docs/detalhes.png)
 
@@ -86,6 +87,7 @@ atividade03/
 │   │   ├── SortSelect.jsx       # select de ordenação
 │   │   ├── PokemonList.jsx      # grid de cards
 │   │   ├── PokemonCard.jsx      # card de cada Pokémon
+|   |   ├── PokemonCompare.jsx   # Comparação de pokémon
 │   │   ├── PokemonDetails.jsx   # modal de detalhes
 │   │   ├── StatBar.jsx          # barra de atributo
 │   │   ├── TypeBadge.jsx        # etiqueta colorida do tipo
