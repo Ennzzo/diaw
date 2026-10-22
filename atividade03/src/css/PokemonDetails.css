@@ -1,51 +1,53 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
   z-index: 10;
-  animation: fadeIn 0.2s;
 }
 
 .modal {
   position: relative;
   background: var(--card);
-  border-radius: 18px;
+  border-radius: 10px;
   width: 100%;
   max-width: 440px;
   max-height: 90vh;
   overflow-y: auto;
-  animation: slideUp 0.25s;
 }
 
 .close-btn {
   position: absolute;
   top: 12px;
-  right: 14px;
-  border: none;
-  background: rgba(255, 255, 255, 0.8);
-  color: #222;
-  border-radius: 50%;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 32px;
   height: 32px;
-  font-size: 1rem;
-  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #222;
+  z-index: 1;
+}
+
+.close-btn:hover {
+  background: #fff;
 }
 
 .modal-top {
   position: relative;
-  border-radius: 18px 18px 0 0;
   text-align: center;
-  padding: 20px;
+  padding: 24px 20px 16px;
 }
 
 .modal-top img {
-  width: 180px;
-  height: 180px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  width: 170px;
+  height: 170px;
 }
 
 .modal-id {
@@ -53,22 +55,25 @@
   left: 18px;
   top: 14px;
   color: #fff;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .modal-body {
-  padding: 20px 24px 24px;
-  text-align: center;
+  padding: 18px 24px 24px;
 }
 
 .modal-body h2 {
-  margin-bottom: 8px;
+  font-size: 2rem;
+  margin-bottom: 6px;
 }
 
 .modal-body h4 {
-  text-align: left;
-  margin: 18px 0 10px;
+  margin: 20px 0 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
 }
 
 .stat-bar {
@@ -77,8 +82,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
-  font-size: 0.85rem;
-  text-align: left;
+  font-size: 0.9rem;
 }
 
 .stat-label {
@@ -86,57 +90,50 @@
 }
 
 .stat-value {
-  font-weight: bold;
+  font-weight: 700;
   text-align: right;
 }
 
 .stat-track {
   background: var(--soft);
-  border-radius: 6px;
-  height: 8px;
+  border-radius: 2px;
+  height: 6px;
   overflow: hidden;
 }
 
 .stat-fill {
   height: 100%;
-  border-radius: 6px;
-  transition: width 0.5s;
 }
 
 .total {
   margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
   text-align: right;
   color: var(--muted);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 .extra-info {
   display: grid;
   grid-template-columns: 1fr 1fr 1.6fr;
-  gap: 8px;
   margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
 }
 
 .extra-info div {
-  background: var(--soft);
-  border-radius: 10px;
-  padding: 8px;
-  font-size: 0.8rem;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+}
+
+.extra-info div + div {
+  border-left: 1px solid var(--border);
 }
 
 .extra-info span {
   display: block;
+  font-size: 0.75rem;
   color: var(--muted);
-  margin-bottom: 2px;
 }
 
 .extra-info .abilities {
@@ -151,8 +148,8 @@
 
 @media (max-width: 600px) {
   .modal-top img {
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
   }
 
   .extra-info {
@@ -161,6 +158,8 @@
 
   .extra-info div:last-child {
     grid-column: span 2;
+    border-left: none;
+    border-top: 1px solid var(--border);
   }
 
   .stat-bar {

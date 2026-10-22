@@ -1,7 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 24px 32px;
 }
 
 .toolbar {
@@ -10,62 +10,70 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 18px 0;
+  margin: 20px 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
 }
 
 .result-count {
   color: var(--muted);
-  font-size: 0.9rem;
 }
 
 .toolbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 0.9rem;
+}
+
+.toolbar-actions label {
+  color: var(--muted);
 }
 
 .sort-select {
   margin-left: 6px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 2px solid var(--border);
-  font-size: 0.9rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
   background: var(--card);
   color: var(--text);
 }
 
+.fav-filter-btn,
+.compare-clear-btn,
 .random-btn {
-  background: #ffcb05;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-weight: 600;
 }
 
+.fav-filter-btn:hover,
 .random-btn:hover {
-  transform: scale(1.05);
-}
-
-.page-title {
-  margin-bottom: 12px;
-}
-
-.fav-filter-btn {
-  background: transparent;
-  border: 2px solid #e3350d;
-  color: #e3350d;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-weight: bold;
-  cursor: pointer;
+  border-color: var(--muted);
 }
 
 .fav-filter-btn.active {
-  background: #e3350d;
-  color: #fff;
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.compare-clear-btn {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--card);
+}
+
+.page-title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
 @media (max-width: 600px) {
@@ -73,22 +81,7 @@
     padding: 16px;
   }
 
-  .toolbar-actions {
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
   .toolbar-actions label {
     width: 100%;
   }
-}
-
-.compare-clear-btn {
-  background: #3498db;
-  border: 2px solid #3498db;
-  color: #fff;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-weight: bold;
-  cursor: pointer;
 }

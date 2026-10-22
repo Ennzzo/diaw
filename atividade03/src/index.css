@@ -1,21 +1,22 @@
 :root {
-  --bg: #f2f2f2;
+  --bg: #f4f4f2;
   --card: #fff;
-  --text: #222;
-  --muted: #777;
-  --soft: #f1f1f1;
-  --soft-hover: #e6e6e6;
-  --border: #ddd;
+  --text: #1d1d1f;
+  --muted: #6b6b6b;
+  --soft: #f0f0ee;
+  --soft-hover: #e6e6e3;
+  --border: #e2e2df;
+  --red: #dc0a2d;
 }
 
 body.dark {
-  --bg: #16181d;
-  --card: #23262e;
-  --text: #eee;
-  --muted: #9a9ea8;
-  --soft: #2e323b;
-  --soft-hover: #3a3f4a;
-  --border: #3a3f4a;
+  --bg: #151515;
+  --card: #1f1f1f;
+  --text: #ececec;
+  --muted: #9a9a9a;
+  --soft: #2a2a2a;
+  --soft-hover: #343434;
+  --border: #2f2f2f;
 }
 
 * {
@@ -25,14 +26,29 @@ body.dark {
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: 'Barlow', Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s, color 0.3s;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
 }
 
 button,
 input,
 select {
   font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+svg {
+  flex-shrink: 0;
 }

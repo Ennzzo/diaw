@@ -1,25 +1,50 @@
 .type-filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 6px;
+  margin-top: 14px;
 }
 
 .type-filter button {
-  --type-color: var(--muted);
-  border: 2px solid var(--type-color);
-  background: transparent;
-  color: var(--type-color);
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
+  --type-color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.type-filter button:hover,
+.type-filter button::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--type-color);
+}
+
+.type-filter button:first-child::before {
+  display: none;
+}
+
+.type-filter button:hover {
+  border-color: var(--muted);
+}
+
 .type-filter button.active {
   background: var(--type-color);
+  border-color: var(--type-color);
   color: #fff;
+}
+
+.type-filter button.active::before {
+  background: #fff;
+}
+
+.type-filter button:first-child.active {
+  color: var(--card);
 }
