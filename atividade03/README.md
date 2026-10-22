@@ -24,9 +24,11 @@ Pokédex interativa feita com React + Vite usando os dados do arquivo `pokedex-d
 - Tema escuro
 - Layout responsivo (desktop, tablet e celular)
 - Mensagem quando nenhum Pokémon é encontrado
-- Comparar Pokémon, mostrando qual melhor atributo entre eles através do botão ⚔️.
+- Comparação entre dois Pokémon, destacando o maior valor de cada atributo
 
 ![Detalhes](./docs/detalhes.png)
+
+![Comparação](./docs/comparacao.png)
 
 ![Treinadores](./docs/treinadores.png)
 
@@ -111,4 +113,6 @@ atividade03/
 - React 19
 - Vite
 - CSS puro
+- [Lucide](https://lucide.dev/) para os ícones (`lucide-react`)
+- Fonte Barlow (Google Fonts)
 - PokéAPI
