@@ -87,7 +87,7 @@ atividade03/
 │   │   ├── SortSelect.jsx       # select de ordenação
 │   │   ├── PokemonList.jsx      # grid de cards
 │   │   ├── PokemonCard.jsx      # card de cada Pokémon
-|   |   ├── PokemonCompare.jsx   # Comparação de pokémon
+│   │   ├── PokemonCompare.jsx   # comparação entre dois Pokémon
 │   │   ├── PokemonDetails.jsx   # modal de detalhes
 │   │   ├── StatBar.jsx          # barra de atributo
 │   │   ├── TypeBadge.jsx        # etiqueta colorida do tipo

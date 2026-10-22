@@ -1,10 +1,9 @@
 import '../css/Header.css'
 
-
-function Header({ page, onChangePage, darkMode, onToggleTheme, compareCount = 0, onOpenCompare }) {
+function Header({ page, onChangePage, darkMode, onToggleTheme }) {
   return (
     <header className="header">
-      <div className="logo" onClick={() => onChangePage('pokedex')} style={{ cursor: 'pointer' }}>
+      <div className="logo" onClick={() => onChangePage('pokedex')}>
         <img src="/pokeball.svg" alt="Pokébola" />
         <h1>Pokédex</h1>
       </div>
@@ -16,15 +15,6 @@ function Header({ page, onChangePage, darkMode, onToggleTheme, compareCount = 0,
           Treinadores
         </button>
 
-        {/* ⚔️ Botão de Comparação no Menu */}
-        <button 
-          className={`compare-nav-btn ${compareCount > 0 ? 'active' : ''}`} 
-          onClick={onOpenCompare}
-          title="Ver comparativo"
-        >
-          ⚔️ Comparar {compareCount > 0 && `(${compareCount}/2)`}
-        </button>
-
         <button className="theme-btn" onClick={onToggleTheme} title="Trocar tema">
           {darkMode ? '☀' : '🌙'}
         </button>
@@ -32,4 +22,5 @@ function Header({ page, onChangePage, darkMode, onToggleTheme, compareCount = 0,
     </header>
   )
 }
+
 export default Header

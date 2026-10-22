@@ -1,18 +1,11 @@
 import PokemonCard from './PokemonCard'
 import '../css/PokemonList.css'
 
-function PokemonList({
-  pokemons,
-  favorites,
-  compareList = [],
-  onSelect,
-  onToggleFavorite,
-  onToggleCompare
-}) {
-  if (!pokemons || pokemons.length === 0) {
+function PokemonList({ pokemons, favorites, compareList, onSelect, onToggleFavorite, onToggleCompare }) {
+  if (pokemons.length === 0) {
     return (
       <div className="empty">
-        <img src="/pokeball.svg" alt="Pokébola" />
+        <img src="/pokeball.svg" alt="" />
         <p>Nenhum Pokémon encontrado :(</p>
       </div>
     )
