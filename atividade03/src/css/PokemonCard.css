@@ -39,8 +39,8 @@
 
 .fav-btn,
 .compare-btn {
-  background: #ffffff;
-  border: 1px solid #ddd;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 50%;
   width: 34px;
   height: 34px;
@@ -49,7 +49,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
-  color: #555;
+  color: var(--muted);
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s, background-color 0.2s, color 0.2s;
@@ -92,6 +92,15 @@
   text-transform: capitalize;
 }
 
+.type-badge {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
 .types {
   display: flex;
   justify-content: center;
@@ -117,4 +126,43 @@
   display: block;
   font-size: 0.9rem;
   color: var(--text, #222);
+}
+
+.fav-btn.inline {
+  display: inline-flex;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  .pokemon-card {
+    padding: 12px 8px;
+  }
+
+  .pokemon-img {
+    width: 90px;
+    height: 90px;
+    margin-top: 32px;
+  }
+
+  .pokemon-img img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pokemon-card h3 {
+    font-size: 1rem;
+  }
+
+  .mini-stats {
+    gap: 4px;
+    font-size: 0.6rem;
+  }
+
+  .fav-btn,
+  .compare-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
 }
