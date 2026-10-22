@@ -8,7 +8,6 @@ function PokemonDetails({ pokemon, isFavorite, onToggleFavorite, onClose }) {
   const [extra, setExtra] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // busca altura, peso e habilidades na PokéAPI
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`)
       .then((res) => res.json())

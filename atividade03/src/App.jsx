@@ -16,7 +16,6 @@ const allPokemons = data.pokemon.map((p) =>
   p.types.length > 0 ? p : { ...p, types: [typeless] }
 )
 
-// Filtra apenas os tipos usados nos Pokémon
 const usedTypes = data.types.filter((type) =>
   allPokemons.some((p) => p.types.some((t) => t.id === type.id))
 )
