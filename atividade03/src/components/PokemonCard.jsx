@@ -1,3 +1,4 @@
+import { Heart, Swords } from 'lucide-react'
 import TypeBadge from './TypeBadge'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonCard.css'
@@ -6,7 +7,7 @@ function PokemonCard({ pokemon, isFavorite, isCompared, onSelect, onToggleFavori
   const mainColor = typeColors[pokemon.types[0].name]
 
   return (
-    <div className="pokemon-card" style={{ borderTopColor: mainColor }} onClick={() => onSelect(pokemon)}>
+    <div className="pokemon-card" onClick={() => onSelect(pokemon)}>
       <span className="pokemon-id">{formatId(pokemon.id)}</span>
 
       <div className="card-actions">
@@ -19,7 +20,7 @@ function PokemonCard({ pokemon, isFavorite, isCompared, onSelect, onToggleFavori
             onToggleCompare(pokemon)
           }}
         >
-          ⚔️
+          <Swords size={16} />
         </button>
 
         <button
@@ -31,7 +32,7 @@ function PokemonCard({ pokemon, isFavorite, isCompared, onSelect, onToggleFavori
             onToggleFavorite(pokemon.id)
           }}
         >
-          {isFavorite ? '❤' : '♡'}
+          <Heart size={16} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
       </div>
 

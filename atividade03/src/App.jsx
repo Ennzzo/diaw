@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Heart, Shuffle, X } from 'lucide-react'
 import data from './data/pokedex-data.json'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -109,14 +110,19 @@ function App() {
                   className={'fav-filter-btn' + (onlyFavorites ? ' active' : '')}
                   onClick={() => setOnlyFavorites(!onlyFavorites)}
                 >
-                  ❤ Favoritos ({favorites.length})
+                  <Heart size={15} fill={onlyFavorites ? 'currentColor' : 'none'} />
+                  Favoritos ({favorites.length})
                 </button>
                 {compareList.length > 0 && (
                   <button className="compare-clear-btn" onClick={() => setCompareList([])}>
-                    ⚔️ Comparando ({compareList.length}/2) ✕
+                    Comparando {compareList.length}/2
+                    <X size={15} />
                   </button>
                 )}
-                <button className="random-btn" onClick={randomPokemon}>🎲 Aleatório</button>
+                <button className="random-btn" onClick={randomPokemon}>
+                  <Shuffle size={15} />
+                  Aleatório
+                </button>
               </div>
             </div>
             <PokemonList

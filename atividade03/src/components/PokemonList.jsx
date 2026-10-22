@@ -1,3 +1,4 @@
+import { SearchX } from 'lucide-react'
 import PokemonCard from './PokemonCard'
 import '../css/PokemonList.css'
 
@@ -5,8 +6,8 @@ function PokemonList({ pokemons, favorites, compareList, onSelect, onToggleFavor
   if (pokemons.length === 0) {
     return (
       <div className="empty">
-        <img src="/pokeball.svg" alt="" />
-        <p>Nenhum Pokémon encontrado :(</p>
+        <SearchX size={48} strokeWidth={1.5} />
+        <p>Nenhum Pokémon encontrado</p>
       </div>
     )
   }

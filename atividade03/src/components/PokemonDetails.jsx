@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Heart, X } from 'lucide-react'
 import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
 import { typeColors, getImage, formatId } from '../utils/pokemon'
@@ -31,9 +32,11 @@ function PokemonDetails({ pokemon, isFavorite, onToggleFavorite, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="close-btn" onClick={onClose}>✕</button>
+        <button className="close-btn" onClick={onClose} title="Fechar">
+          <X size={18} />
+        </button>
 
-        <div className="modal-top" style={{ background: `linear-gradient(135deg, ${color}, ${color}aa)` }}>
+        <div className="modal-top" style={{ background: color }}>
           <span className="modal-id">{formatId(pokemon.id)}</span>
           <img src={getImage(pokemon.id)} alt={pokemon.name} />
         </div>
@@ -45,7 +48,7 @@ function PokemonDetails({ pokemon, isFavorite, onToggleFavorite, onClose }) {
               className={'fav-btn inline' + (isFavorite ? ' active' : '')}
               onClick={() => onToggleFavorite(pokemon.id)}
             >
-              {isFavorite ? '❤' : '♡'}
+              <Heart size={18} fill={isFavorite ? 'currentColor' : 'none'} />
             </button>
           </h2>
           <div className="types">

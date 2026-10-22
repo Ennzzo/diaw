@@ -1,3 +1,4 @@
+import { Medal } from 'lucide-react'
 import { getImage } from '../utils/pokemon'
 
 function TrainerCard({ trainer, pokemons, onSelectPokemon }) {
@@ -8,7 +9,7 @@ function TrainerCard({ trainer, pokemons, onSelectPokemon }) {
         <div>
           <h3>{trainer.name}</h3>
           <p className="badges">
-            🏅 {trainer.badges} {trainer.badges === 1 ? 'insígnia' : 'insígnias'}
+            <Medal size={15} /> {trainer.badges} {trainer.badges === 1 ? 'insígnia' : 'insígnias'}
           </p>
         </div>
       </div>

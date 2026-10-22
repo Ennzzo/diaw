@@ -1,3 +1,4 @@
+import { Moon, Sun } from 'lucide-react'
 import '../css/Header.css'
 
 function Header({ page, onChangePage, darkMode, onToggleTheme }) {
@@ -14,9 +15,8 @@ function Header({ page, onChangePage, darkMode, onToggleTheme }) {
         <button className={page === 'trainers' ? 'active' : ''} onClick={() => onChangePage('trainers')}>
           Treinadores
         </button>
-
         <button className="theme-btn" onClick={onToggleTheme} title="Trocar tema">
-          {darkMode ? '☀' : '🌙'}
+          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
         </button>
       </nav>
     </header>

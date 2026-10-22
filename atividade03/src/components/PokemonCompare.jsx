@@ -1,3 +1,4 @@
+import { X } from 'lucide-react'
 import { getImage, formatId } from '../utils/pokemon'
 import '../css/PokemonCompare.css'
 
@@ -14,9 +15,11 @@ function PokemonCompare({ pokemon1, pokemon2, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="compare-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="compare-close" onClick={onClose}>&times;</button>
+        <button className="compare-close" onClick={onClose} title="Fechar">
+          <X size={20} />
+        </button>
 
-        <h2 className="compare-title">⚔️ Comparativo de Pokémon</h2>
+        <h2 className="compare-title">Comparação</h2>
 
         <div className="compare-header">
           <div className="compare-card">
@@ -25,7 +28,7 @@ function PokemonCompare({ pokemon1, pokemon2, onClose }) {
             <h3>{pokemon1.name}</h3>
           </div>
 
-          <span className="vs-badge">VS</span>
+          <span className="vs">vs</span>
 
           <div className="compare-card">
             <span className="compare-id">{formatId(pokemon2.id)}</span>
@@ -42,13 +45,11 @@ function PokemonCompare({ pokemon1, pokemon2, onClose }) {
             return (
               <div key={stat} className="compare-row">
                 <div className={'compare-val' + (val1 > val2 ? ' winner' : '')}>
-                  {val1 > val2 && '🏆 '}
                   {val1}
                 </div>
                 <div className="compare-name">{statLabels[stat]}</div>
                 <div className={'compare-val' + (val2 > val1 ? ' winner' : '')}>
                   {val2}
-                  {val2 > val1 && ' 🏆'}
                 </div>
               </div>
             )
