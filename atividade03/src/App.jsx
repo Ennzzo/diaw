@@ -11,7 +11,6 @@ import PokemonCompare from './components/PokemonCompare'
 import TrainerList from './components/TrainerList'
 import './css/App.css'
 
-// O Mew vem sem tipo no json, entao recebe o Typeless
 const typeless = data.types.find((t) => t.id === 0)
 const allPokemons = data.pokemon.map((p) =>
   p.types.length > 0 ? p : { ...p, types: [typeless] }
