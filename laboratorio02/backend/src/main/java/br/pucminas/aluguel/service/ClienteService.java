@@ -9,6 +9,7 @@ import br.pucminas.aluguel.model.Cliente;
 import br.pucminas.aluguel.model.Rendimento;
 import br.pucminas.aluguel.repository.ClienteRepository;
 import br.pucminas.aluguel.repository.UsuarioRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,13 @@ public class ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public ClienteService(ClienteRepository clienteRepository, UsuarioRepository usuarioRepository) {
+    public ClienteService(ClienteRepository clienteRepository, UsuarioRepository usuarioRepository,
+                          PasswordEncoder passwordEncoder) {
         this.clienteRepository = clienteRepository;
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional(readOnly = true)
@@ -49,7 +53,7 @@ public class ClienteService {
 
         Cliente cliente = new Cliente();
         cliente.setLogin(dados.login());
-        cliente.setSenha(dados.senha());
+        cliente.setSenha(passwordEncoder.encode(dados.senha()));
         preencher(cliente, dados);
         return ClienteResponse.from(clienteRepository.save(cliente));
     }
@@ -61,7 +65,7 @@ public class ClienteService {
             throw new RegraNegocioException("CPF ja cadastrado");
         }
         if (dados.senha() != null && !dados.senha().isBlank()) {
-            cliente.setSenha(dados.senha());
+            cliente.setSenha(passwordEncoder.encode(dados.senha()));
         }
         preencher(cliente, dados);
         return ClienteResponse.from(clienteRepository.save(cliente));

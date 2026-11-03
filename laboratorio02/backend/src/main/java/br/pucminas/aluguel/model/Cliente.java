@@ -30,6 +30,11 @@ public class Cliente extends Usuario {
 
     public static final int MAX_RENDIMENTOS = 3;
 
+    @Override
+    public String getPerfil() {
+        return "CLIENTE";
+    }
+
     public void adicionarRendimento(Rendimento rendimento) {
         if (rendimentos.size() >= MAX_RENDIMENTOS) {
             throw new IllegalArgumentException("O cliente pode ter no maximo 3 rendimentos");

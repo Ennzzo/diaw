@@ -25,4 +25,6 @@ public abstract class Usuario {
 
     @Column(nullable = false)
     private String senha;
+
+    public abstract String getPerfil();
 }

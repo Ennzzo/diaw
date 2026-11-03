@@ -18,4 +18,9 @@ public class Agente extends Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoAgente tipo;
+
+    @Override
+    public String getPerfil() {
+        return "AGENTE";
+    }
 }
