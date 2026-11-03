@@ -48,6 +48,9 @@ public class Pedido {
 
     private LocalDateTime dataAvaliacao;
 
+    @OneToOne(mappedBy = "pedido")
+    private Contrato contrato;
+
     public boolean podeSerAlterado() {
         return status == StatusPedido.PENDENTE;
     }

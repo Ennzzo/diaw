@@ -17,11 +17,13 @@ public record PedidoResponse(
         StatusPedido status,
         LocalDateTime dataCriacao,
         String parecer,
-        String avaliadoPor
+        String avaliadoPor,
+        ContratoResponse contrato
 ) {
     public static PedidoResponse from(Pedido p) {
         return new PedidoResponse(p.getId(), p.getCliente().getId(), p.getCliente().getNome(), p.getAutomovel(),
                 p.getDataInicio(), p.getDataFim(), p.getStatus(), p.getDataCriacao(), p.getParecer(),
-                p.getAgenteAvaliador() != null ? p.getAgenteAvaliador().getNome() : null);
+                p.getAgenteAvaliador() != null ? p.getAgenteAvaliador().getNome() : null,
+                ContratoResponse.from(p.getContrato()));
     }
 }
