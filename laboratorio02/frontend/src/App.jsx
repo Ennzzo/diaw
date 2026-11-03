@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import Inicio from './pages/Inicio'
 import Clientes from './pages/Clientes'
+import MeusPedidos from './pages/MeusPedidos'
+import PedidoForm from './pages/PedidoForm'
 import './css/App.css'
 
 function App() {
@@ -24,6 +26,30 @@ function App() {
             }
           >
             <Route path="/" element={<Inicio />} />
+            <Route
+              path="/pedidos"
+              element={
+                <RotaPrivada perfil="CLIENTE">
+                  <MeusPedidos />
+                </RotaPrivada>
+              }
+            />
+            <Route
+              path="/pedidos/novo"
+              element={
+                <RotaPrivada perfil="CLIENTE">
+                  <PedidoForm />
+                </RotaPrivada>
+              }
+            />
+            <Route
+              path="/pedidos/:id/editar"
+              element={
+                <RotaPrivada perfil="CLIENTE">
+                  <PedidoForm />
+                </RotaPrivada>
+              }
+            />
             <Route
               path="/clientes"
               element={

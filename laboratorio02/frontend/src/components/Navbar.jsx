@@ -21,6 +21,7 @@ function Navbar() {
         </div>
 
         <nav className="navbar-links">
+          {usuario.perfil === 'CLIENTE' && <NavLink to="/pedidos">Meus pedidos</NavLink>}
           {usuario.perfil === 'AGENTE' && (
             <>
               <NavLink to="/clientes">Clientes</NavLink>
