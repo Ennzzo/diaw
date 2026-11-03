@@ -11,3 +11,4 @@ Aluno: Enzo Bambirra
 - [atividade02](./atividade02) - Projeto Spring Boot da adega (login)
 - [atividade03](./atividade03) - Pokédex feita com React + Vite
 - [laboratorio02](./laboratorio02) - Sistema de aluguel de carros com Spring Boot, React + Vite e Supabase
+- [p2/VotacaoFazenda](./p2/VotacaoFazenda) - Votação da Fazenda feita com React + Vite (P2)
