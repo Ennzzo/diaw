@@ -9,7 +9,14 @@ import '../css/Tabela.css'
 import '../css/Formulario.css'
 import '../css/Painel.css'
 
-const filtros = ['TODOS', 'PENDENTE', 'APROVADO', 'CONTRATADO', 'REPROVADO', 'CANCELADO']
+const filtros = [
+  ['PENDENTE', 'Em análise'],
+  ['APROVADO', 'Aprovados'],
+  ['CONTRATADO', 'Contratados'],
+  ['REPROVADO', 'Reprovados'],
+  ['CANCELADO', 'Cancelados'],
+  ['TODOS', 'Todos'],
+]
 
 function PainelAgente() {
   const { usuario } = useAuth()
@@ -87,9 +94,9 @@ function PainelAgente() {
       </div>
 
       <div className="filtros">
-        {filtros.map((f) => (
-          <button key={f} className={filtro === f ? 'ativo' : ''} onClick={() => setFiltro(f)}>
-            {f === 'TODOS' ? 'Todos' : f.charAt(0) + f.slice(1).toLowerCase()}
+        {filtros.map(([valor, texto]) => (
+          <button key={valor} className={filtro === valor ? 'ativo' : ''} onClick={() => setFiltro(valor)}>
+            {texto}
           </button>
         ))}
       </div>

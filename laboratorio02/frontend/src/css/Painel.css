@@ -60,3 +60,18 @@
   padding: 12px 14px;
   font-size: 0.9rem;
 }
+
+@media (max-width: 600px) {
+  .resumo {
+    gap: 8px;
+  }
+
+  .resumo div {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .resumo strong {
+    font-size: 1.3rem;
+  }
+}

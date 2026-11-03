@@ -56,3 +56,24 @@
   color: #fff;
   display: flex;
 }
+
+@media (max-width: 700px) {
+  .navbar-conteudo {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navbar-usuario {
+    margin-left: auto;
+  }
+
+  .navbar-usuario span {
+    display: none;
+  }
+
+  .navbar-links {
+    order: 3;
+    flex-basis: 100%;
+    overflow-x: auto;
+  }
+}

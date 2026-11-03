@@ -33,4 +33,38 @@ input,
 select,
 textarea {
   font: inherit;
+  font-weight: 400;
+  color: var(--texto);
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--azul);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.botao:hover {
+  background: var(--azul-claro);
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.erro {
+  background: #fdecec;
+  color: var(--vermelho);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
 }
