@@ -74,6 +74,7 @@ public class ClienteService {
     @Transactional
     public void excluir(Long id) {
         clienteRepository.delete(buscarCliente(id));
+        clienteRepository.flush();
     }
 
     public Cliente buscarCliente(Long id) {

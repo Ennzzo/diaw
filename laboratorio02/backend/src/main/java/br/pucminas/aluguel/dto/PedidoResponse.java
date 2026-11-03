@@ -4,6 +4,7 @@ import br.pucminas.aluguel.model.Automovel;
 import br.pucminas.aluguel.model.Pedido;
 import br.pucminas.aluguel.model.StatusPedido;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,6 +12,8 @@ public record PedidoResponse(
         Long id,
         Long clienteId,
         String clienteNome,
+        String clienteProfissao,
+        BigDecimal clienteRenda,
         Automovel automovel,
         LocalDate dataInicio,
         LocalDate dataFim,
@@ -21,7 +24,8 @@ public record PedidoResponse(
         ContratoResponse contrato
 ) {
     public static PedidoResponse from(Pedido p) {
-        return new PedidoResponse(p.getId(), p.getCliente().getId(), p.getCliente().getNome(), p.getAutomovel(),
+        return new PedidoResponse(p.getId(), p.getCliente().getId(), p.getCliente().getNome(),
+                p.getCliente().getProfissao(), p.getCliente().getRendaTotal(), p.getAutomovel(),
                 p.getDataInicio(), p.getDataFim(), p.getStatus(), p.getDataCriacao(), p.getParecer(),
                 p.getAgenteAvaliador() != null ? p.getAgenteAvaliador().getNome() : null,
                 ContratoResponse.from(p.getContrato()));

@@ -1,5 +1,6 @@
 package br.pucminas.aluguel.exception;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -21,6 +22,12 @@ public class TratadorDeErros {
     @ExceptionHandler({RegraNegocioException.class, IllegalArgumentException.class})
     public ResponseEntity<Map<String, String>> regraNegocio(RuntimeException e) {
         return ResponseEntity.badRequest().body(Map.of("erro", e.getMessage()));
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> emUso(DataIntegrityViolationException e) {
+        return ResponseEntity.badRequest()
+                .body(Map.of("erro", "Nao foi possivel concluir, o registro esta ligado a algum pedido"));
     }
 
     @ExceptionHandler(BadCredentialsException.class)

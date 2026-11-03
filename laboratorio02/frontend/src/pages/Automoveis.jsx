@@ -46,8 +46,8 @@ function Automoveis() {
     try {
       await api.delete(`/automoveis/${automovel.id}`)
       carregar()
-    } catch {
-      alert('Não foi possível excluir. O carro pode estar em algum pedido.')
+    } catch (error) {
+      alert(mensagemDeErro(error))
     }
   }
 

@@ -110,7 +110,10 @@ function PainelAgente() {
             {visiveis.map((p) => (
               <tr key={p.id}>
                 <td>{p.id}</td>
-                <td>{p.clienteNome}</td>
+                <td>
+                  {p.clienteNome}
+                  <small>Renda {formatarDinheiro(p.clienteRenda)}</small>
+                </td>
                 <td>
                   {p.automovel.marca} {p.automovel.modelo}
                   <small>{p.automovel.placa}</small>
@@ -166,6 +169,14 @@ function PainelAgente() {
           <form className="formulario" onSubmit={confirmar}>
             {acao.tipo === 'avaliar' && (
               <div className="grade">
+                <div className="dados-cliente largura-total">
+                  <span>Profissão: {acao.pedido.clienteProfissao || 'não informada'}</span>
+                  <span>Renda mensal: {formatarDinheiro(acao.pedido.clienteRenda)}</span>
+                  <span>
+                    Aluguel de {diasEntre(acao.pedido.dataInicio, acao.pedido.dataFim)} dias - {acao.pedido.automovel.marca}{' '}
+                    {acao.pedido.automovel.modelo}
+                  </span>
+                </div>
                 <label className="largura-total">
                   Parecer financeiro
                   <select name="aprovado" value={form.aprovado} onChange={alterar}>

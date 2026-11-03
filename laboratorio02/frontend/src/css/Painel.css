@@ -50,3 +50,13 @@
   padding: 5px 10px;
   font-size: 0.85rem;
 }
+
+.dados-cliente {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--fundo);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}

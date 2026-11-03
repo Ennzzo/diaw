@@ -48,6 +48,7 @@ public class AutomovelService {
 
     public void excluir(Long id) {
         automovelRepository.delete(buscar(id));
+        automovelRepository.flush();
     }
 
     private void preencher(Automovel automovel, AutomovelRequest dados) {

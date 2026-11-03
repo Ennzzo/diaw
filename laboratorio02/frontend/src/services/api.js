@@ -12,6 +12,19 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+// token expirado ou invalido: volta pro login
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && !error.config.url.includes('/auth/')) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('usuario')
+      window.location.href = '/login'
+    }
+    return Promise.reject(error)
+  }
+)
+
 export function mensagemDeErro(error) {
   return error.response?.data?.erro || 'Algo deu errado, tente novamente'
 }

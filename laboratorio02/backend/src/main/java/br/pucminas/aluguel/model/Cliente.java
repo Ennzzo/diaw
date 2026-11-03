@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class Cliente extends Usuario {
     @Override
     public String getPerfil() {
         return "CLIENTE";
+    }
+
+    public BigDecimal getRendaTotal() {
+        return rendimentos.stream().map(Rendimento::getValor).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void adicionarRendimento(Rendimento rendimento) {
