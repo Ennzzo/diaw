@@ -1,0 +1,68 @@
+.auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: linear-gradient(160deg, var(--azul) 0%, var(--azul-claro) 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.auth-card-largo {
+  max-width: 640px;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--azul);
+}
+
+.auth-card h1 {
+  color: var(--azul);
+  font-size: 1.6rem;
+}
+
+.auth-sub {
+  color: var(--cinza);
+  margin: 6px 0 24px;
+}
+
+.auth-card form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.auth-card input {
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.auth-card .botao {
+  width: 100%;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.auth-link a {
+  color: var(--azul-claro);
+  font-weight: 600;
+}
