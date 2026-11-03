@@ -30,6 +30,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                         .requestMatchers("/api/clientes/**").hasRole("AGENTE")
+                        .requestMatchers(HttpMethod.GET, "/api/automoveis/**").authenticated()
+                        .requestMatchers("/api/automoveis/**").hasRole("AGENTE")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
