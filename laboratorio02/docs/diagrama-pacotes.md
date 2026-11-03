@@ -23,6 +23,7 @@ flowchart TB
         model[model]
         security[security]
         config[config]
+        exception[exception]
 
         controller --> service
         controller --> dto
@@ -32,6 +33,8 @@ flowchart TB
         repository --> model
         security --> repository
         config --> security
+        controller -.-> exception
+        service -.-> exception
     end
 
     db[(Supabase - PostgreSQL)]
@@ -48,5 +51,6 @@ flowchart TB
 | controller | Endpoints REST (Controller do MVC) |
 | dto | Objetos de entrada e saída da API |
 | security | Geração e validação do token JWT |
-| config | Configuração do Spring Security e CORS |
+| config | Configuração do Spring Security e dados iniciais (agentes) |
+| exception | Exceções de negócio e tratamento global de erros |
 | front-end | Páginas React (View do MVC) |
