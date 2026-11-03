@@ -24,7 +24,9 @@ function Navbar() {
           {usuario.perfil === 'CLIENTE' && <NavLink to="/pedidos">Meus pedidos</NavLink>}
           {usuario.perfil === 'AGENTE' && (
             <>
+              <NavLink to="/painel">Pedidos</NavLink>
               <NavLink to="/clientes">Clientes</NavLink>
+              <NavLink to="/automoveis">Automóveis</NavLink>
             </>
           )}
         </nav>

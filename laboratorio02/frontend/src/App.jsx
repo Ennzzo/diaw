@@ -8,6 +8,8 @@ import Inicio from './pages/Inicio'
 import Clientes from './pages/Clientes'
 import MeusPedidos from './pages/MeusPedidos'
 import PedidoForm from './pages/PedidoForm'
+import PainelAgente from './pages/PainelAgente'
+import Automoveis from './pages/Automoveis'
 import './css/App.css'
 
 function App() {
@@ -47,6 +49,22 @@ function App() {
               element={
                 <RotaPrivada perfil="CLIENTE">
                   <PedidoForm />
+                </RotaPrivada>
+              }
+            />
+            <Route
+              path="/painel"
+              element={
+                <RotaPrivada perfil="AGENTE">
+                  <PainelAgente />
+                </RotaPrivada>
+              }
+            />
+            <Route
+              path="/automoveis"
+              element={
+                <RotaPrivada perfil="AGENTE">
+                  <Automoveis />
                 </RotaPrivada>
               }
             />

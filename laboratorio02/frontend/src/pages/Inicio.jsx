@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext'
 
 function Inicio() {
   const { usuario } = useAuth()
-  return <Navigate to={usuario.perfil === 'AGENTE' ? '/clientes' : '/pedidos'} replace />
+  return <Navigate to={usuario.perfil === 'AGENTE' ? '/painel' : '/pedidos'} replace />
 }
 
 export default Inicio

@@ -1,0 +1,52 @@
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.resumo div {
+  background: #fff;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: var(--cinza);
+  font-size: 0.9rem;
+}
+
+.resumo strong {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--azul);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.filtros button {
+  border: 1px solid var(--borda);
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+}
+
+.filtros button.ativo {
+  background: var(--azul);
+  border-color: var(--azul);
+  color: #fff;
+}
+
+.acoes .botao-acao {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--azul-claro);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+}
