@@ -29,9 +29,12 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/api/clientes/**").hasRole("AGENTE")
                         .requestMatchers(HttpMethod.GET, "/api/automoveis/**").authenticated()
                         .requestMatchers("/api/automoveis/**").hasRole("AGENTE")
+                        .requestMatchers(HttpMethod.POST, "/api/pedidos").hasRole("CLIENTE")
+                        .requestMatchers("/api/pedidos/*/cancelar").hasRole("CLIENTE")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
