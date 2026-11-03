@@ -2,6 +2,7 @@ package br.pucminas.aluguel.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,6 +20,11 @@ public class TratadorDeErros {
     @ExceptionHandler({RegraNegocioException.class, IllegalArgumentException.class})
     public ResponseEntity<Map<String, String>> regraNegocio(RuntimeException e) {
         return ResponseEntity.badRequest().body(Map.of("erro", e.getMessage()));
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, String>> credenciais(BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("erro", e.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
