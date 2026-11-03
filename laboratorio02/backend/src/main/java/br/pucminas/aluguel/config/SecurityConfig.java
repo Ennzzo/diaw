@@ -35,6 +35,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/automoveis/**").hasRole("AGENTE")
                         .requestMatchers(HttpMethod.POST, "/api/pedidos").hasRole("CLIENTE")
                         .requestMatchers("/api/pedidos/*/cancelar").hasRole("CLIENTE")
+                        .requestMatchers("/api/pedidos/*/avaliar").hasRole("AGENTE")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))

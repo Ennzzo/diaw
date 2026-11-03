@@ -15,10 +15,13 @@ public record PedidoResponse(
         LocalDate dataInicio,
         LocalDate dataFim,
         StatusPedido status,
-        LocalDateTime dataCriacao
+        LocalDateTime dataCriacao,
+        String parecer,
+        String avaliadoPor
 ) {
     public static PedidoResponse from(Pedido p) {
         return new PedidoResponse(p.getId(), p.getCliente().getId(), p.getCliente().getNome(), p.getAutomovel(),
-                p.getDataInicio(), p.getDataFim(), p.getStatus(), p.getDataCriacao());
+                p.getDataInicio(), p.getDataFim(), p.getStatus(), p.getDataCriacao(), p.getParecer(),
+                p.getAgenteAvaliador() != null ? p.getAgenteAvaliador().getNome() : null);
     }
 }

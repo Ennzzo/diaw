@@ -39,6 +39,15 @@ public class Pedido {
 
     private LocalDateTime dataCriacao = LocalDateTime.now();
 
+    @Column(length = 500)
+    private String parecer;
+
+    @ManyToOne
+    @JoinColumn(name = "agente_avaliador_id")
+    private Agente agenteAvaliador;
+
+    private LocalDateTime dataAvaliacao;
+
     public boolean podeSerAlterado() {
         return status == StatusPedido.PENDENTE;
     }

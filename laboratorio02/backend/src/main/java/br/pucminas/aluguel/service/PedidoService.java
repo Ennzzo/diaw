@@ -1,5 +1,6 @@
 package br.pucminas.aluguel.service;
 
+import br.pucminas.aluguel.dto.AvaliacaoRequest;
 import br.pucminas.aluguel.dto.PedidoRequest;
 import br.pucminas.aluguel.dto.PedidoResponse;
 import br.pucminas.aluguel.exception.NaoEncontradoException;
@@ -10,6 +11,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -67,6 +69,19 @@ public class PedidoService {
             throw new RegraNegocioException("Esse pedido nao pode mais ser cancelado");
         }
         pedido.setStatus(StatusPedido.CANCELADO);
+        return PedidoResponse.from(pedidoRepository.save(pedido));
+    }
+
+    @Transactional
+    public PedidoResponse avaliar(Long id, AvaliacaoRequest dados, Agente agente) {
+        Pedido pedido = buscarPedido(id, agente);
+        if (pedido.getStatus() != StatusPedido.PENDENTE) {
+            throw new RegraNegocioException("Esse pedido ja foi avaliado ou cancelado");
+        }
+        pedido.setStatus(dados.aprovado() ? StatusPedido.APROVADO : StatusPedido.REPROVADO);
+        pedido.setParecer(dados.parecer());
+        pedido.setAgenteAvaliador(agente);
+        pedido.setDataAvaliacao(LocalDateTime.now());
         return PedidoResponse.from(pedidoRepository.save(pedido));
     }
 

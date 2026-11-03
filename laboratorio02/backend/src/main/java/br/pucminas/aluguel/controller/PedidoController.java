@@ -1,7 +1,9 @@
 package br.pucminas.aluguel.controller;
 
+import br.pucminas.aluguel.dto.AvaliacaoRequest;
 import br.pucminas.aluguel.dto.PedidoRequest;
 import br.pucminas.aluguel.dto.PedidoResponse;
+import br.pucminas.aluguel.model.Agente;
 import br.pucminas.aluguel.model.Cliente;
 import br.pucminas.aluguel.model.Usuario;
 import br.pucminas.aluguel.service.AuthService;
@@ -50,6 +52,12 @@ public class PedidoController {
     @PatchMapping("/{id}/cancelar")
     public PedidoResponse cancelar(@PathVariable Long id, Authentication auth) {
         return pedidoService.cancelar(id, usuario(auth));
+    }
+
+    @PatchMapping("/{id}/avaliar")
+    public PedidoResponse avaliar(@PathVariable Long id, @RequestBody @Valid AvaliacaoRequest dados, Authentication auth) {
+        Agente agente = (Agente) usuario(auth);
+        return pedidoService.avaliar(id, dados, agente);
     }
 
     private Usuario usuario(Authentication auth) {
