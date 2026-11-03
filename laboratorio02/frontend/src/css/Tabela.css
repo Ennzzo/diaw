@@ -1,0 +1,58 @@
+.tabela-container {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--borda);
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--borda);
+  font-size: 0.92rem;
+}
+
+.tabela th {
+  background: #f8fafc;
+  color: var(--cinza);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.tabela tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela td small {
+  display: block;
+  color: var(--cinza);
+}
+
+.acoes {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.acoes button {
+  background: none;
+  border: none;
+  color: var(--azul-claro);
+  padding: 4px 6px;
+}
+
+.acoes .perigo {
+  color: var(--vermelho);
+}
+
+.vazio {
+  text-align: center;
+  color: var(--cinza);
+  padding: 28px !important;
+}

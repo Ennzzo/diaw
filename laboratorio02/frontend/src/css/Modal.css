@@ -1,0 +1,38 @@
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.modal-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.modal-topo h2 {
+  color: var(--azul);
+  font-size: 1.25rem;
+}
+
+.modal-topo button {
+  background: none;
+  border: none;
+  color: var(--cinza);
+  display: flex;
+}
