@@ -1,0 +1,22 @@
+# Blueprint do Render: New > Blueprint > escolha o repositorio diaw
+# e informe o caminho laboratorio02/render.yaml em "Blueprint Path".
+services:
+  - type: web
+    name: aluguel-carros-api
+    runtime: docker
+    rootDir: laboratorio02/Back
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/status
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: http://localhost:5173,https://*.vercel.app

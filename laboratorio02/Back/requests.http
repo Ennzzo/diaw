@@ -1,0 +1,76 @@
+### Requisicoes para testar a API (extensao REST Client do VS Code ou IntelliJ)
+@url = http://localhost:8080
+
+### Status
+GET {{url}}/api/status
+
+### Cadastro de cliente
+POST {{url}}/api/auth/cadastro
+Content-Type: application/json
+
+{
+  "nome": "Joao Silva",
+  "login": "joao",
+  "senha": "1234",
+  "rg": "MG-12.345.678",
+  "cpf": "12345678901",
+  "endereco": "Rua da Bahia, 100",
+  "profissao": "Analista",
+  "rendimentos": [
+    { "entidadeEmpregadora": "Empresa X", "valor": 4500 }
+  ]
+}
+
+### Login do agente (copie o token da resposta)
+# @name loginAgente
+POST {{url}}/api/auth/login
+Content-Type: application/json
+
+{ "login": "locadora", "senha": "1234" }
+
+### Login do cliente
+# @name loginCliente
+POST {{url}}/api/auth/login
+Content-Type: application/json
+
+{ "login": "joao", "senha": "1234" }
+
+### Cadastrar automovel (agente)
+POST {{url}}/api/automoveis
+Authorization: Bearer {{loginAgente.response.body.token}}
+Content-Type: application/json
+
+{ "matricula": "MAT100", "ano": 2023, "marca": "Fiat", "modelo": "Pulse", "placa": "PUC2B26" }
+
+### Listar automoveis
+GET {{url}}/api/automoveis
+Authorization: Bearer {{loginCliente.response.body.token}}
+
+### Criar pedido (cliente)
+POST {{url}}/api/pedidos
+Authorization: Bearer {{loginCliente.response.body.token}}
+Content-Type: application/json
+
+{ "automovelId": 1, "dataInicio": "2026-12-01", "dataFim": "2026-12-05" }
+
+### Meus pedidos
+GET {{url}}/api/pedidos
+Authorization: Bearer {{loginCliente.response.body.token}}
+
+### Avaliar pedido (agente)
+PATCH {{url}}/api/pedidos/1/avaliar
+Authorization: Bearer {{loginAgente.response.body.token}}
+Content-Type: application/json
+
+{ "aprovado": true, "parecer": "Renda compativel com o aluguel" }
+
+### Executar contrato (agente)
+POST {{url}}/api/pedidos/1/contrato
+Authorization: Bearer {{loginAgente.response.body.token}}
+Content-Type: application/json
+
+{ "proprietario": "CLIENTE" }
+
+### Cancelar pedido (cliente)
+PATCH {{url}}/api/pedidos/1/cancelar
+Authorization: Bearer {{loginCliente.response.body.token}}
