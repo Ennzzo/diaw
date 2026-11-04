@@ -1,0 +1,38 @@
+.logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--esp-4);
+}
+
+.logo-card strong {
+  display: block;
+  margin-top: var(--esp-3);
+}
+
+.logo-card p {
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto-secundario);
+}
+
+.logo-fundos {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-radius: var(--raio-g);
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+}
+
+.logo-fundo {
+  display: grid;
+  place-items: center;
+  min-height: 130px;
+  padding: var(--esp-5);
+}
+
+.logo-fundo-claro {
+  background: var(--neutro-50);
+}
+
+.logo-fundo-escuro {
+  background: var(--azul-900);
+}

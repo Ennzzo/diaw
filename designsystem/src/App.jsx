@@ -6,6 +6,8 @@ import CirculoCromatico from './components/CirculoCromatico'
 import TokensSemanticos from './components/TokensSemanticos'
 import Tipografia from './components/Tipografia'
 import Espacamentos from './components/Espacamentos'
+import Logos from './components/Logos'
+import Temas from './components/Temas'
 import { useTema } from './utils/useTema'
 import './css/App.css'
 
@@ -65,6 +67,22 @@ function App() {
 
         <Secao id="espacamentos" titulo="Espaçamentos e arredondamentos">
           <Espacamentos />
+        </Secao>
+
+        <Secao
+          id="logos"
+          titulo="Logos e marca"
+          descricao="A marca junta o carro (ícone CarFront do lucide, o mesmo da navbar do laboratório) com o nome em Racing Sans One. Existe uma versão para cada tema."
+        >
+          <Logos />
+        </Secao>
+
+        <Secao
+          id="temas"
+          titulo="Temas light e dark"
+          descricao="O mesmo componente renderizado nos dois temas, só trocando os tokens."
+        >
+          <Temas />
         </Secao>
       </main>
 

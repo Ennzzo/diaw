@@ -74,11 +74,14 @@
   --raio-xg: 16px;
   --raio-pilula: 999px;
 
-  /* sombras */
+}
+
+/* tema claro */
+:root,
+[data-tema='claro'] {
   --sombra-1: 0 1px 3px rgba(13, 18, 24, 0.08);
   --sombra-2: 0 8px 24px rgba(13, 18, 24, 0.12);
 
-  /* tema claro */
   --cor-fundo: var(--neutro-50);
   --cor-superficie: var(--neutro-0);
   --cor-superficie-2: var(--neutro-100);
@@ -108,6 +111,7 @@
   color-scheme: light;
 }
 
+/* tema escuro */
 [data-tema='escuro'] {
   --cor-fundo: var(--neutro-950);
   --cor-superficie: var(--neutro-900);
