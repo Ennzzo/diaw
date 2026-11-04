@@ -26,7 +26,7 @@ api.interceptors.response.use(
 )
 
 export function mensagemDeErro(error) {
-  return error.response?.data?.erro || 'Algo deu errado, tente novamente'
+  return error.response?.data?.mensagem || 'Algo deu errado, tente novamente'
 }
 
 export default api
