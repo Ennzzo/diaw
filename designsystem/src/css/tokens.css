@@ -1,5 +1,4 @@
 :root {
-  /* paleta base */
   --azul-50: #eef4fa;
   --azul-100: #d7e4f1;
   --azul-200: #b0c9e2;
@@ -42,7 +41,6 @@
   --amarelo-500: #e0a325;
   --amarelo-700: #8f610c;
 
-  /* tipografia */
   --fonte-display: 'Racing Sans One', 'Arial Black', sans-serif;
   --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
@@ -56,7 +54,6 @@
   --texto-pequeno: 0.875rem;
   --texto-legenda: 0.75rem;
 
-  /* espacamentos */
   --esp-1: 4px;
   --esp-2: 8px;
   --esp-3: 12px;
@@ -67,16 +64,13 @@
   --esp-12: 48px;
   --esp-16: 64px;
 
-  /* arredondamentos */
   --raio-p: 4px;
   --raio-m: 8px;
   --raio-g: 12px;
   --raio-xg: 16px;
   --raio-pilula: 999px;
-
 }
 
-/* tema claro */
 :root,
 [data-tema='claro'] {
   --sombra-1: 0 1px 3px rgba(13, 18, 24, 0.08);
@@ -111,7 +105,6 @@
   color-scheme: light;
 }
 
-/* tema escuro */
 [data-tema='escuro'] {
   --cor-fundo: var(--neutro-950);
   --cor-superficie: var(--neutro-900);

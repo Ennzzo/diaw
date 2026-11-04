@@ -4,9 +4,7 @@ function temaInicial() {
   try {
     const salvo = localStorage.getItem('alugacar-tema')
     if (salvo) return salvo
-  } catch {
-    // sem localStorage
-  }
+  } catch {}
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro'
 }
 
@@ -17,9 +15,7 @@ export function useTema() {
     document.documentElement.dataset.tema = tema
     try {
       localStorage.setItem('alugacar-tema', tema)
-    } catch {
-      // sem localStorage
-    }
+    } catch {}
   }, [tema])
 
   function trocarTema() {

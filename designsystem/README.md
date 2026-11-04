@@ -24,12 +24,12 @@ Aluno: Enzo Bambirra
 
 ```
 designsystem/
-├── index.html            # importa as fontes do Google Fonts
+├── index.html
 └── src/
-    ├── css/tokens.css    # todos os tokens (cores, fontes, espaços, raios, temas)
-    ├── components/       # uma seção por componente
-    ├── data/cores.js     # paleta e tokens semânticos
-    └── utils/            # cálculo de contraste e hook do tema
+    ├── css/tokens.css
+    ├── components/
+    ├── data/cores.js
+    └── utils/
 ```
 
 Para usar os tokens em outro projeto basta importar o `src/css/tokens.css` e usar as variáveis
