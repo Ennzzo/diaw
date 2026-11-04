@@ -4,6 +4,8 @@ import Secao from './components/Secao'
 import Paleta from './components/Paleta'
 import CirculoCromatico from './components/CirculoCromatico'
 import TokensSemanticos from './components/TokensSemanticos'
+import Tipografia from './components/Tipografia'
+import Espacamentos from './components/Espacamentos'
 import { useTema } from './utils/useTema'
 import './css/App.css'
 
@@ -51,6 +53,18 @@ function App() {
             funciona sozinho.
           </p>
           <TokensSemanticos />
+        </Secao>
+
+        <Secao
+          id="tipografia"
+          titulo="Tipografia"
+          descricao="Duas famílias: uma com cara de corrida para a marca e outra neutra para a interface. A escala usa rem para respeitar o tamanho de fonte do navegador."
+        >
+          <Tipografia />
+        </Secao>
+
+        <Secao id="espacamentos" titulo="Espaçamentos e arredondamentos">
+          <Espacamentos />
         </Secao>
       </main>
 

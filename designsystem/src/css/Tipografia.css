@@ -1,0 +1,86 @@
+.fontes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--esp-4);
+}
+
+.fonte p {
+  color: var(--cor-texto-secundario);
+  font-size: var(--texto-pequeno);
+}
+
+.fonte-rotulo {
+  font-size: var(--texto-legenda);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-texto-destaque);
+}
+
+.fonte .fonte-exemplo {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.2;
+  margin: var(--esp-2) 0 var(--esp-1);
+}
+
+.fonte .fonte-letras {
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+  margin-bottom: var(--esp-3);
+}
+
+.fonte-display,
+.fonte .fonte-display {
+  font-family: var(--fonte-display);
+  font-weight: 400 !important;
+}
+
+.tipo-import {
+  margin-top: var(--esp-4);
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto-secundario);
+  overflow-wrap: anywhere;
+}
+
+.tipo-escala {
+  padding: 0;
+}
+
+.tipo-linha {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  gap: var(--esp-4);
+  padding: var(--esp-4) var(--esp-5);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.tipo-linha:last-child {
+  border-bottom: none;
+}
+
+.tipo-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--texto-legenda);
+  color: var(--cor-texto-secundario);
+}
+
+.tipo-meta strong {
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto);
+}
+
+.tipo-linha p {
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .tipo-linha {
+    grid-template-columns: 1fr;
+    gap: var(--esp-2);
+  }
+}
