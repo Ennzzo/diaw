@@ -42,3 +42,13 @@
   color: var(--cor-texto-secundario);
   border-top: 1px solid var(--cor-borda);
 }
+
+.pagina {
+  margin-left: 260px;
+}
+
+@media (max-width: 900px) {
+  .pagina {
+    margin-left: 0;
+  }
+}

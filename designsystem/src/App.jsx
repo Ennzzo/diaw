@@ -1,4 +1,4 @@
-import Cabecalho from './components/Cabecalho'
+import MenuLateral from './components/MenuLateral'
 import Logo from './components/Logo'
 import Secao from './components/Secao'
 import Paleta from './components/Paleta'
@@ -32,99 +32,101 @@ function App() {
 
   return (
     <>
-      <Cabecalho tema={tema} trocarTema={trocarTema} secoes={secoes} />
+      <MenuLateral tema={tema} trocarTema={trocarTema} secoes={secoes} />
 
-      <main className="conteudo" id="topo">
-        <div className="intro">
-          <span className="intro-tag">Design System · v1.0</span>
-          <h1>AlugaCar DS</h1>
-          <p>
-            Decisões visuais do front-end do sistema de aluguel de carros (Laboratório 02). Use esta
-            página como referência ao criar telas, componentes e estados, para manter a interface
-            consistente, fácil de manter e de escalar.
-          </p>
-          <Logo tema={tema} tamanho={1.2} />
-        </div>
+      <div className="pagina">
+        <main className="conteudo" id="topo">
+          <div className="intro">
+            <span className="intro-tag">Design System · v1.0</span>
+            <h1>AlugaCar DS</h1>
+            <p>
+              Decisões visuais do front-end do sistema de aluguel de carros (Laboratório 02). Use
+              esta página como referência ao criar telas, componentes e estados, para manter a
+              interface consistente, fácil de manter e de escalar.
+            </p>
+            <Logo tema={tema} tamanho={1.2} />
+          </div>
 
-        <Secao
-          id="cores"
-          titulo="Cores"
-          descricao="A paleta parte do azul e do laranja que já eram usados no front-end do laboratório. Cada cor virou uma escala de tons e, por cima dela, tokens semânticos que mudam entre os temas."
-        >
-          <CirculoCromatico />
-          <Paleta />
-          <h3>Tokens semânticos</h3>
-          <p className="secao-descricao">
-            Nos componentes use sempre os tokens semânticos, nunca o hex direto. Assim o tema escuro
-            funciona sozinho.
-          </p>
-          <TokensSemanticos />
-        </Secao>
+          <Secao
+            id="cores"
+            titulo="Cores"
+            descricao="A paleta parte do azul e do laranja que já eram usados no front-end do laboratório. Cada cor virou uma escala de tons e, por cima dela, tokens semânticos que mudam entre os temas."
+          >
+            <CirculoCromatico />
+            <Paleta />
+            <h3>Tokens semânticos</h3>
+            <p className="secao-descricao">
+              Nos componentes use sempre os tokens semânticos, nunca o hex direto. Assim o tema
+              escuro funciona sozinho.
+            </p>
+            <TokensSemanticos />
+          </Secao>
 
-        <Secao
-          id="tipografia"
-          titulo="Tipografia"
-          descricao="Duas famílias: uma com cara de corrida para a marca e outra neutra para a interface. A escala usa rem para respeitar o tamanho de fonte do navegador."
-        >
-          <Tipografia />
-        </Secao>
+          <Secao
+            id="tipografia"
+            titulo="Tipografia"
+            descricao="Duas famílias: uma com cara de corrida para a marca e outra neutra para a interface. A escala usa rem para respeitar o tamanho de fonte do navegador."
+          >
+            <Tipografia />
+          </Secao>
 
-        <Secao id="espacamentos" titulo="Espaçamentos e arredondamentos">
-          <Espacamentos />
-        </Secao>
+          <Secao id="espacamentos" titulo="Espaçamentos e arredondamentos">
+            <Espacamentos />
+          </Secao>
 
-        <Secao
-          id="logos"
-          titulo="Logos e marca"
-          descricao="A marca junta o carro (ícone CarFront do lucide, o mesmo da navbar do laboratório) com o nome em Racing Sans One. Existe uma versão para cada tema."
-        >
-          <Logos />
-        </Secao>
+          <Secao
+            id="logos"
+            titulo="Logos e marca"
+            descricao="A marca junta o carro (ícone CarFront do lucide, o mesmo da navbar do laboratório) com o nome em Racing Sans One. Existe uma versão para cada tema."
+          >
+            <Logos />
+          </Secao>
 
-        <Secao
-          id="temas"
-          titulo="Temas light e dark"
-          descricao="O mesmo componente renderizado nos dois temas, só trocando os tokens."
-        >
-          <Temas />
-        </Secao>
+          <Secao
+            id="temas"
+            titulo="Temas light e dark"
+            descricao="O mesmo componente renderizado nos dois temas, só trocando os tokens."
+          >
+            <Temas />
+          </Secao>
 
-        <Secao
-          id="icones"
-          titulo="Ícones"
-          descricao="Ícones do lucide-react que aparecem no sistema, com o significado de cada um."
-        >
-          <Icones />
-        </Secao>
+          <Secao
+            id="icones"
+            titulo="Ícones"
+            descricao="Ícones do lucide-react que aparecem no sistema, com o significado de cada um."
+          >
+            <Icones />
+          </Secao>
 
-        <Secao
-          id="botoes"
-          titulo="Botões"
-          descricao="Componente <Botao /> com variante, tamanho, ícone e estado de carregando."
-        >
-          <Botoes />
-        </Secao>
+          <Secao
+            id="botoes"
+            titulo="Botões"
+            descricao="Componente <Botao /> com variante, tamanho, ícone e estado de carregando."
+          >
+            <Botoes />
+          </Secao>
 
-        <Secao
-          id="componentes"
-          titulo="Componentes"
-          descricao="Peças que se repetem nas telas de pedidos, clientes e automóveis."
-        >
-          <Componentes />
-        </Secao>
+          <Secao
+            id="componentes"
+            titulo="Componentes"
+            descricao="Peças que se repetem nas telas de pedidos, clientes e automóveis."
+          >
+            <Componentes />
+          </Secao>
 
-        <Secao
-          id="acessibilidade"
-          titulo="Acessibilidade"
-          descricao="Regras para que o sistema funcione para todo mundo, inclusive quem usa teclado, leitor de tela ou tem baixa visão."
-        >
-          <Acessibilidade />
-        </Secao>
-      </main>
+          <Secao
+            id="acessibilidade"
+            titulo="Acessibilidade"
+            descricao="Regras para que o sistema funcione para todo mundo, inclusive quem usa teclado, leitor de tela ou tem baixa visão."
+          >
+            <Acessibilidade />
+          </Secao>
+        </main>
 
-      <footer className="rodape">
-        AlugaCar DS · Laboratório 02 de DIAW · PUC Minas · Enzo Bambirra
-      </footer>
+        <footer className="rodape">
+          AlugaCar DS · Laboratório 02 de DIAW · PUC Minas · Enzo Bambirra
+        </footer>
+      </div>
     </>
   )
 }

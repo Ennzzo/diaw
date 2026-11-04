@@ -8,7 +8,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 24px;
 }
 
 body {
@@ -53,5 +53,11 @@ code {
   * {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 76px;
   }
 }
