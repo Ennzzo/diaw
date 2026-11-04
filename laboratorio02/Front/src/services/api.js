@@ -1,7 +1,8 @@
 import axios from 'axios'
+import API_CONFIG from '../config/apiConfig'
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${API_CONFIG.BASE_URL}/api`,
 })
 
 api.interceptors.request.use((config) => {
@@ -26,7 +27,10 @@ api.interceptors.response.use(
 )
 
 export function mensagemDeErro(error) {
-  return error.response?.data?.mensagem || 'Algo deu errado, tente novamente'
+  if (!error.response) {
+    return `Nao foi possivel falar com o back-end em ${API_CONFIG.BASE_URL}`
+  }
+  return error.response.data?.mensagem || 'Algo deu errado, tente novamente'
 }
 
 export default api
