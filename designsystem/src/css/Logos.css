@@ -4,12 +4,12 @@
   gap: var(--esp-4);
 }
 
-.logo-card strong {
+.logo-card > strong {
   display: block;
   margin-top: var(--esp-3);
 }
 
-.logo-card p {
+.logo-card > p {
   font-size: var(--texto-pequeno);
   color: var(--cor-texto-secundario);
 }
