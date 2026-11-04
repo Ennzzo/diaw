@@ -159,7 +159,7 @@ As mudanças entre a v1 e a v2 do diagrama de classes estão descritas no própr
 
 #### 1 Back-end (Spring Boot)
 
-Copie o `backend/.env.example` para `backend/.env` e preencha com os dados do Supabase (*Project Settings > Database > Connection string > Session pooler*):
+Copie o `Back/.env.example` para `Back/.env` e preencha com os dados do Supabase (*Project Settings > Database > Connection string > Session pooler*):
 
 ```properties
 DB_URL=jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres
@@ -196,7 +196,7 @@ Clientes se cadastram pela própria tela de cadastro.
 #### Terminal 1: Back-end (Spring Boot)
 
 ```bash
-cd backend
+cd Back
 ./mvnw spring-boot:run
 ```
 
@@ -205,7 +205,7 @@ A API sobe em `http://localhost:8080`.
 #### Terminal 2: Front-end (React, Vite)
 
 ```bash
-cd frontend
+cd Front
 npm install
 npm run dev
 ```
@@ -219,7 +219,7 @@ Acesse `http://localhost:5173`.
 ```
 laboratorio02/
 ├── docs/                     # diagramas UML e prints
-├── backend/
+├── Back/
 │   ├── pom.xml
 │   └── src/main/java/br/pucminas/aluguel/
 │       ├── config/           # Spring Security e dados iniciais
@@ -230,7 +230,7 @@ laboratorio02/
 │       ├── repository/       # Spring Data JPA
 │       ├── security/         # JWT
 │       └── service/          # regras de negócio
-└── frontend/
+└── Front/
     └── src/
         ├── components/       # Navbar, Modal, formulário de cliente...
         ├── context/          # AuthContext (login)
@@ -291,7 +291,7 @@ curl -X POST http://localhost:8080/api/auth/login \
 Testes unitários das regras de negócio (limite de 3 rendimentos, renda total e status do pedido):
 
 ```bash
-cd backend
+cd Back
 ./mvnw test
 ```
 
