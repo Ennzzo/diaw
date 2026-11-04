@@ -1,0 +1,49 @@
+.icones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--esp-3);
+}
+
+.icone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-1);
+  text-align: center;
+  padding: var(--esp-4) var(--esp-2);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-g);
+  font-size: var(--texto-legenda);
+}
+
+.icone-desenho {
+  display: flex;
+  gap: var(--esp-1);
+  color: var(--cor-texto-marca);
+  margin-bottom: var(--esp-1);
+}
+
+.icone span:last-child {
+  color: var(--cor-texto-secundario);
+}
+
+.icone-tamanhos {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--esp-8);
+  flex-wrap: wrap;
+}
+
+.icone-tamanhos div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-2);
+  font-size: var(--texto-legenda);
+  color: var(--cor-texto-secundario);
+}
+
+.icone-tamanhos svg {
+  color: var(--cor-texto-marca);
+}

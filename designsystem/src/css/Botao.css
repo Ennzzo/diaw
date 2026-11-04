@@ -1,0 +1,99 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: 44px;
+  padding: 0 var(--esp-5);
+  border: 1px solid transparent;
+  border-radius: var(--raio-m);
+  font-weight: 600;
+  font-size: var(--texto-corpo);
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-p {
+  min-height: 36px;
+  padding: 0 var(--esp-3);
+  font-size: var(--texto-pequeno);
+}
+
+.btn-g {
+  min-height: 52px;
+  padding: 0 var(--esp-6);
+  font-size: var(--texto-corpo-g);
+}
+
+.btn-icone {
+  padding: 0;
+  width: 44px;
+}
+
+.btn-icone.btn-p {
+  width: 36px;
+}
+
+.btn-primario {
+  background: var(--cor-marca);
+  color: var(--cor-sobre-marca);
+}
+
+.btn-primario:hover:not(:disabled) {
+  background: var(--cor-marca-hover);
+}
+
+.btn-destaque {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.btn-destaque:hover:not(:disabled) {
+  background: var(--cor-destaque-hover);
+}
+
+.btn-secundario {
+  background: transparent;
+  border-color: var(--cor-borda-forte);
+  color: var(--cor-texto);
+}
+
+.btn-secundario:hover:not(:disabled) {
+  background: var(--cor-superficie-2);
+}
+
+.btn-fantasma {
+  background: transparent;
+  color: var(--cor-texto-marca);
+}
+
+.btn-fantasma:hover:not(:disabled) {
+  background: var(--cor-marca-suave);
+}
+
+.btn-perigo {
+  background: var(--vermelho-700);
+  color: var(--neutro-0);
+}
+
+.btn-perigo:hover:not(:disabled) {
+  background: var(--vermelho-500);
+}
+
+.btn-girando {
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

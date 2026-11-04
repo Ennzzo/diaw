@@ -1,0 +1,45 @@
+.botoes-lista {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-g);
+}
+
+.botao-linha {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--esp-4);
+  align-items: center;
+  padding: var(--esp-5);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.botao-linha:last-child {
+  border-bottom: none;
+}
+
+.botao-info {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--texto-pequeno);
+}
+
+.botao-info code {
+  color: var(--cor-texto-destaque);
+}
+
+.botao-info span {
+  color: var(--cor-texto-secundario);
+}
+
+.botao-exemplos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-3);
+}
+
+@media (max-width: 700px) {
+  .botao-linha {
+    grid-template-columns: 1fr;
+  }
+}
