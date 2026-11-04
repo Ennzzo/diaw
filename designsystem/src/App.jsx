@@ -1,5 +1,9 @@
 import Cabecalho from './components/Cabecalho'
 import Logo from './components/Logo'
+import Secao from './components/Secao'
+import Paleta from './components/Paleta'
+import CirculoCromatico from './components/CirculoCromatico'
+import TokensSemanticos from './components/TokensSemanticos'
 import { useTema } from './utils/useTema'
 import './css/App.css'
 
@@ -33,6 +37,21 @@ function App() {
           </p>
           <Logo tema={tema} tamanho={1.2} />
         </div>
+
+        <Secao
+          id="cores"
+          titulo="Cores"
+          descricao="A paleta parte do azul e do laranja que já eram usados no front-end do laboratório. Cada cor virou uma escala de tons e, por cima dela, tokens semânticos que mudam entre os temas."
+        >
+          <CirculoCromatico />
+          <Paleta />
+          <h3>Tokens semânticos</h3>
+          <p className="secao-descricao">
+            Nos componentes use sempre os tokens semânticos, nunca o hex direto. Assim o tema escuro
+            funciona sozinho.
+          </p>
+          <TokensSemanticos />
+        </Secao>
       </main>
 
       <footer className="rodape">

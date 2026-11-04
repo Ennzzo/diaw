@@ -1,0 +1,42 @@
+.tabela-area {
+  overflow-x: auto;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-g);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-pequeno);
+}
+
+.tabela th,
+.tabela td {
+  text-align: left;
+  padding: var(--esp-3) var(--esp-4);
+  border-bottom: 1px solid var(--cor-borda);
+  white-space: nowrap;
+}
+
+.tabela th {
+  background: var(--cor-superficie-2);
+  font-size: var(--texto-legenda);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-secundario);
+}
+
+.tabela tr:last-child td {
+  border-bottom: none;
+}
+
+.amostra {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--raio-p);
+  border: 1px solid var(--cor-borda-forte);
+  vertical-align: middle;
+  margin-right: var(--esp-2);
+}

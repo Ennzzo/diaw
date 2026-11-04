@@ -1,0 +1,69 @@
+.circulo-area {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-8);
+  flex-wrap: wrap;
+  padding: var(--esp-6);
+  margin-bottom: var(--esp-8);
+}
+
+.circulo {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: conic-gradient(
+    hsl(0, 75%, 55%),
+    hsl(60, 75%, 55%),
+    hsl(120, 75%, 55%),
+    hsl(180, 75%, 55%),
+    hsl(240, 75%, 55%),
+    hsl(300, 75%, 55%),
+    hsl(360, 75%, 55%)
+  );
+}
+
+.circulo-miolo {
+  position: absolute;
+  inset: 36px;
+  border-radius: 50%;
+  background: var(--cor-superficie);
+}
+
+.circulo-ponto {
+  position: absolute;
+  top: calc(50% - 14px);
+  left: calc(50% - 14px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: var(--sombra-2);
+  z-index: 2;
+}
+
+.circulo-linha {
+  position: absolute;
+  top: 14px;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: calc(100% - 28px);
+  background: var(--cor-texto-secundario);
+  transform-origin: center;
+  z-index: 1;
+}
+
+.circulo-texto {
+  flex: 1;
+  min-width: 240px;
+}
+
+.circulo-texto h3 {
+  margin-top: 0;
+}
+
+.circulo-texto p {
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--esp-4);
+}
