@@ -8,6 +8,9 @@ import Tipografia from './components/Tipografia'
 import Espacamentos from './components/Espacamentos'
 import Logos from './components/Logos'
 import Temas from './components/Temas'
+import Icones from './components/Icones'
+import Botoes from './components/Botoes'
+import Componentes from './components/Componentes'
 import { useTema } from './utils/useTema'
 import './css/App.css'
 
@@ -83,6 +86,30 @@ function App() {
           descricao="O mesmo componente renderizado nos dois temas, só trocando os tokens."
         >
           <Temas />
+        </Secao>
+
+        <Secao
+          id="icones"
+          titulo="Ícones"
+          descricao="Ícones do lucide-react que aparecem no sistema, com o significado de cada um."
+        >
+          <Icones />
+        </Secao>
+
+        <Secao
+          id="botoes"
+          titulo="Botões"
+          descricao="Componente <Botao /> com variante, tamanho, ícone e estado de carregando."
+        >
+          <Botoes />
+        </Secao>
+
+        <Secao
+          id="componentes"
+          titulo="Componentes"
+          descricao="Peças que se repetem nas telas de pedidos, clientes e automóveis."
+        >
+          <Componentes />
         </Secao>
       </main>
 

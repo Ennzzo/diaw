@@ -1,0 +1,124 @@
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--raio-pilula);
+  font-size: var(--texto-legenda);
+  font-weight: 600;
+}
+
+.status-pendente {
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+}
+
+.status-aprovado {
+  background: var(--cor-info-fundo);
+  color: var(--cor-info);
+}
+
+.status-contratado {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.status-reprovado {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+.status-cancelado {
+  background: var(--cor-superficie-2);
+  color: var(--cor-texto-secundario);
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--esp-4);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--texto-pequeno);
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  min-height: 44px;
+  padding: 0 var(--esp-3);
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-m);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-weight: 400;
+}
+
+.campo input:hover:not(:disabled),
+.campo select:hover {
+  border-color: var(--cor-texto-secundario);
+}
+
+.campo input:disabled {
+  background: var(--cor-superficie-2);
+  color: var(--cor-texto-secundario);
+}
+
+.campo-erro input {
+  border-color: var(--cor-erro);
+}
+
+.campo-mensagem {
+  color: var(--cor-erro);
+  font-weight: 400;
+  font-size: var(--texto-legenda);
+}
+
+.alertas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+}
+
+.alerta {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--raio-m);
+  font-size: var(--texto-pequeno);
+}
+
+.alerta-sucesso {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.alerta-info {
+  background: var(--cor-info-fundo);
+  color: var(--cor-info);
+}
+
+.alerta-aviso {
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+}
+
+.alerta-erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+@media (max-width: 600px) {
+  .campos {
+    grid-template-columns: 1fr;
+  }
+}
