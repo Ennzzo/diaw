@@ -32,17 +32,28 @@
 ---
 
 ## 📚 Índice
+- [Links Úteis](#-links-úteis)
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Funcionalidades Principais](#-funcionalidades-principais)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Arquitetura](#-arquitetura)
 - [Instalação e Execução](#-instalação-e-execução)
+- [Deploy](#-deploy)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
 - [Demonstração](#-demonstração)
 - [Testes](#-testes)
 - [Documentações utilizadas](#-documentações-utilizadas)
 - [Autores](#-autores)
 - [Licença](#-licença)
+
+---
+
+## 🔗 Links Úteis
+
+- 🌐 **Front-end (Vercel):** _a definir após o deploy_
+- ⚙️ **API (Render):** _a definir após o deploy_ (`/api/status` mostra se a API e o banco estão no ar)
+- 📘 [README do Back-end](Back/README.md) · [README do Front-end](Front/README.md)
+- 📐 [Diagramas UML](docs/)
 
 ---
 
@@ -91,6 +102,7 @@ stateDiagram-v2
 - React Router
 - Axios
 - Lucide React (ícones)
+- concurrently (sobe back e front juntos)
 - CSS puro
 
 ### 🖥️ Back-end
@@ -100,9 +112,12 @@ stateDiagram-v2
 - Lombok
 - Apache Maven
 
-### ⚙️ Infraestrutura
+### ⚙️ Infraestrutura & DevOps
 - Supabase (PostgreSQL)
-- Docker (Postgres local para desenvolvimento)
+- Docker (imagem do back-end)
+- Render (deploy do back-end)
+- Vercel (deploy do front-end)
+- GitHub Actions (testes e build a cada push)
 
 ---
 
@@ -132,6 +147,7 @@ As mudanças entre a v1 e a v2 do diagrama de classes estão descritas no própr
 
 | Método | Rota | Quem pode |
 |---|---|---|
+| GET | `/` e `/api/status` | público |
 | POST | `/api/auth/cadastro` | público |
 | POST | `/api/auth/login` | público |
 | GET | `/api/auth/me` | logado |
@@ -153,36 +169,31 @@ As mudanças entre a v1 e a v2 do diagrama de classes estão descritas no própr
 ### Pré-requisitos
 - JDK 25
 - Node.js 20+
-- Um projeto no [Supabase](https://supabase.com/) **ou** Docker para rodar um Postgres local
+- Um projeto no [Supabase](https://supabase.com/)
 
 ### 🔑 Variáveis de Ambiente
 
 #### 1 Back-end (Spring Boot)
 
-Copie o `Back/.env.example` para `Back/.env` e preencha com os dados do Supabase (*Project Settings > Database > Connection string > Session pooler*):
+Copie o `Back/.env.example` para `Back/.env` e preencha com os dados do Supabase (**Connect > JDBC > Session pooler**):
 
 ```properties
-DB_URL=jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres
+DB_URL=jdbc:postgresql://aws-1-sa-east-1.pooler.supabase.com:5432/postgres
 DB_USER=postgres.SEU_PROJETO
 DB_PASSWORD=SUA_SENHA
 JWT_SECRET=uma-chave-com-pelo-menos-32-caracteres
+CORS_ORIGINS=http://localhost:5173,https://*.vercel.app
 ```
 
-Sem o `.env`, o sistema usa um Postgres local em `localhost:5433` (usuário e senha `postgres`).
+O passo a passo do Supabase está no [README do Back](Back/README.md#-configurando-o-supabase).
 
 #### 2 Front-end (React, Vite)
 
-Não precisa de variáveis. O Vite redireciona as chamadas de `/api` para `http://localhost:8080`.
+Localmente não precisa de nada: o front usa `http://localhost:8080`. Na Vercel, cadastre `VITE_API_URL` com a URL do back no Render (ver `Front/.env.example`).
 
 ### 💾 Banco de Dados
 
-As tabelas são criadas automaticamente pelo Hibernate (`ddl-auto=update`). Para usar um Postgres local em vez do Supabase:
-
-```bash
-docker run -d --name aluguel-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=aluguel -p 5433:5432 postgres:16
-```
-
-Na primeira execução são criados dois agentes:
+As tabelas são criadas automaticamente pelo Hibernate (`ddl-auto=update`). Na primeira execução são criados dois agentes:
 
 | Usuário | Senha | Tipo |
 |---|---|---|
@@ -193,24 +204,46 @@ Clientes se cadastram pela própria tela de cadastro.
 
 ### ⚡ Como Executar a Aplicação
 
-#### Terminal 1: Back-end (Spring Boot)
+#### Um terminal só (back + front) ⭐
 
 ```bash
-cd Back
-./mvnw spring-boot:run
+cd Front
+npm install
+npm run dev:all          # macOS / Linux
+npm run dev:all:windows  # Windows
 ```
 
-A API sobe em `http://localhost:8080`.
-
-#### Terminal 2: Front-end (React, Vite)
+#### Ou em dois terminais
 
 ```bash
+# Terminal 1: Back-end
+cd Back
+./mvnw spring-boot:run
+
+# Terminal 2: Front-end
 cd Front
 npm install
 npm run dev
 ```
 
-Acesse `http://localhost:5173`.
+API em `http://localhost:8080` e front em `http://localhost:5173`.
+
+---
+
+## 🚀 Deploy
+
+```mermaid
+flowchart LR
+    usuario([Navegador]) --> vercel[Front-end<br/>Vercel]
+    vercel -- HTTPS + JWT --> render[API Spring Boot<br/>Render - Docker]
+    render -- JDBC --> supabase[(Supabase<br/>PostgreSQL)]
+```
+
+Ordem recomendada:
+
+1. **Banco:** projeto no Supabase (já usado no desenvolvimento).
+2. **Back-end no Render:** *New > Blueprint* com o arquivo [`render.yaml`](render.yaml), ou *Web Service* com runtime Docker e *Root Directory* `laboratorio02/Back`. Preencha `DB_URL`, `DB_USER` e `DB_PASSWORD`. Detalhes no [README do Back](Back/README.md#️-deploy-no-render).
+3. **Front-end na Vercel:** *Root Directory* `laboratorio02/Front` e variável `VITE_API_URL` com a URL do Render. Detalhes no [README do Front](Front/README.md#️-deploy-na-vercel).
 
 ---
 
@@ -218,21 +251,29 @@ Acesse `http://localhost:5173`.
 
 ```
 laboratorio02/
+├── render.yaml               # blueprint do deploy no Render
 ├── docs/                     # diagramas UML e prints
 ├── Back/
+│   ├── Dockerfile
+│   ├── requests.http         # exemplos de requisições
 │   ├── pom.xml
-│   └── src/main/java/br/pucminas/aluguel/
-│       ├── config/           # Spring Security e dados iniciais
-│       ├── controller/       # endpoints REST
-│       ├── dto/              # entrada e saída da API
-│       ├── exception/        # erros de negócio e tratamento global
-│       ├── model/            # entidades JPA
-│       ├── repository/       # Spring Data JPA
-│       ├── security/         # JWT
-│       └── service/          # regras de negócio
+│   └── src/
+│       ├── main/java/br/pucminas/aluguel/
+│       │   ├── config/       # Security, CORS e dados iniciais
+│       │   ├── controller/   # endpoints REST
+│       │   ├── dto/          # entrada e saída da API
+│       │   ├── exception/    # ErroResposta e GlobalExceptionHandler
+│       │   ├── model/        # entidades JPA
+│       │   ├── repository/   # Spring Data JPA
+│       │   ├── security/     # JWT
+│       │   └── service/      # regras de negócio
+│       └── test/             # testes de model, service e controller
 └── Front/
+    ├── vercel.json
+    ├── .env.example
     └── src/
         ├── components/       # Navbar, Modal, formulário de cliente...
+        ├── config/           # apiConfig.js (URL da API)
         ├── context/          # AuthContext (login)
         ├── css/              # um css por tela/componente
         ├── pages/            # telas
@@ -288,12 +329,18 @@ curl -X POST http://localhost:8080/api/auth/login \
 
 ## 🧪 Testes
 
-Testes unitários das regras de negócio (limite de 3 rendimentos, renda total e status do pedido):
+24 testes automatizados no back-end:
+
+- **model:** limite de 3 rendimentos, renda total e regras de status do pedido;
+- **service (Mockito):** criação de cliente (login/CPF repetido, senha criptografada), criação, cancelamento e avaliação de pedidos;
+- **controller (MockMvc standalone):** códigos HTTP e formato do `ErroResposta`.
 
 ```bash
 cd Back
 ./mvnw test
 ```
+
+O workflow [`.github/workflows/laboratorio02.yml`](../.github/workflows/laboratorio02.yml) roda os testes do back e o lint + build do front a cada push.
 
 ---
 
@@ -303,6 +350,9 @@ cd Back
 - [Spring Security](https://docs.spring.io/spring-security/reference/index.html)
 - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/reference/index.html)
 - [Supabase - Connecting to Postgres](https://supabase.com/docs/guides/database/connecting-to-postgres)
+- [Render - Deploy com Docker](https://render.com/docs/docker)
+- [Vercel - Vite](https://vercel.com/docs/frameworks/vite)
+- [Projetos FullStack da disciplina](https://github.com/joaopauloaramuni/desenvolvimento-e-integracao-de-aplicacoes-web/tree/main/PROJETOS/FullStack)
 - [React](https://react.dev/)
 - [Vite](https://vite.dev/)
 - [React Router](https://reactrouter.com/)
