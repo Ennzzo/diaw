@@ -48,9 +48,9 @@ flowchart TB
 | model | Entidades JPA (Model do MVC) |
 | repository | Acesso ao banco com Spring Data JPA |
 | service | Regras de negócio |
-| controller | Endpoints REST (Controller do MVC) |
+| controller | Endpoints REST (Controller do MVC), incluindo o `/api/status` |
 | dto | Objetos de entrada e saída da API |
 | security | Geração e validação do token JWT |
-| config | Configuração do Spring Security e dados iniciais (agentes) |
-| exception | Exceções de negócio e tratamento global de erros |
+| config | Spring Security, CORS e dados iniciais (agentes) |
+| exception | Exceções de negócio, `ErroResposta` e `GlobalExceptionHandler` |
 | front-end | Páginas React (View do MVC) |
