@@ -1,0 +1,95 @@
+.contrastes {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-g);
+}
+
+.contraste {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: var(--esp-4);
+  align-items: center;
+  padding: var(--esp-3) var(--esp-4);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.contraste:last-child {
+  border-bottom: none;
+}
+
+.contraste-amostra {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 44px;
+  border-radius: var(--raio-m);
+  border: 1px solid var(--cor-borda);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.contraste-info {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--texto-pequeno);
+  min-width: 0;
+}
+
+.contraste-info code {
+  color: var(--cor-texto-secundario);
+}
+
+.contraste-tema {
+  font-size: var(--texto-legenda);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cor-texto-destaque);
+}
+
+.contraste-nota {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.contraste-razao {
+  font-weight: 700;
+  min-width: 64px;
+  text-align: right;
+}
+
+.selo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 8px;
+  border-radius: var(--raio-pilula);
+  font-size: var(--texto-legenda);
+  font-weight: 700;
+}
+
+.selo-ok {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.selo-falha {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+@media (max-width: 600px) {
+  .contraste {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .contraste-nota {
+    grid-column: 1 / -1;
+  }
+
+  .contraste-razao {
+    text-align: left;
+    min-width: 0;
+  }
+}

@@ -11,6 +11,7 @@ import Temas from './components/Temas'
 import Icones from './components/Icones'
 import Botoes from './components/Botoes'
 import Componentes from './components/Componentes'
+import Acessibilidade from './components/Acessibilidade'
 import { useTema } from './utils/useTema'
 import './css/App.css'
 
@@ -110,6 +111,14 @@ function App() {
           descricao="Peças que se repetem nas telas de pedidos, clientes e automóveis."
         >
           <Componentes />
+        </Secao>
+
+        <Secao
+          id="acessibilidade"
+          titulo="Acessibilidade"
+          descricao="Regras para que o sistema funcione para todo mundo, inclusive quem usa teclado, leitor de tela ou tem baixa visão."
+        >
+          <Acessibilidade />
         </Secao>
       </main>
 
