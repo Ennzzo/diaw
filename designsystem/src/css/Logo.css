@@ -1,0 +1,60 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.logo-empilhada {
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.logo-icone {
+  display: grid;
+  place-items: center;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 0.5em;
+  background: var(--azul-800);
+  color: var(--laranja-400);
+}
+
+.logo-icone svg {
+  width: 62%;
+  height: 62%;
+}
+
+.logo-empilhada .logo-icone {
+  width: 3em;
+  height: 3em;
+}
+
+.logo-texto {
+  font-family: var(--fonte-display);
+  font-size: 1.6em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.logo-texto strong {
+  font-weight: 400;
+  color: var(--laranja-400);
+}
+
+.logo-claro .logo-texto {
+  color: var(--azul-800);
+}
+
+.logo-claro .logo-texto strong {
+  color: var(--laranja-700);
+}
+
+.logo-escuro .logo-texto {
+  color: var(--neutro-0);
+}
+
+.logo-escuro .logo-icone {
+  background: var(--laranja-400);
+  color: var(--azul-800);
+}
