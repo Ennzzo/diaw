@@ -1,0 +1,77 @@
+export const escalas = [
+  {
+    nome: 'azul',
+    descricao: 'Cor primária da marca. Navbar, botões principais, títulos e links.',
+    tons: {
+      50: '#eef4fa',
+      100: '#d7e4f1',
+      200: '#b0c9e2',
+      300: '#84a9cf',
+      400: '#5b88b7',
+      500: '#457b9d',
+      600: '#2f5c84',
+      700: '#24476b',
+      800: '#1d3557',
+      900: '#132339',
+    },
+    base: 800,
+  },
+  {
+    nome: 'laranja',
+    descricao: 'Cor de destaque. Ícone da marca, chamadas secundárias e preços.',
+    tons: {
+      50: '#fef6ee',
+      100: '#fde8d4',
+      200: '#fad0a9',
+      300: '#f7b980',
+      400: '#f4a261',
+      500: '#ee8a3c',
+      600: '#d96f22',
+      700: '#b4561a',
+      800: '#8f4419',
+      900: '#733917',
+    },
+    base: 400,
+  },
+  {
+    nome: 'neutro',
+    descricao: 'Fundos, superfícies, bordas e textos.',
+    tons: {
+      0: '#ffffff',
+      50: '#f4f6f9',
+      100: '#eef1f4',
+      200: '#dde2e8',
+      300: '#c4cbd4',
+      400: '#9aa3af',
+      500: '#6b7280',
+      600: '#4b5563',
+      700: '#374151',
+      800: '#1f2933',
+      900: '#151c24',
+      950: '#0d1218',
+    },
+  },
+]
+
+export const feedback = [
+  { nome: 'sucesso', hex: '#2f9e6e', uso: 'Pedido contratado, ações concluídas' },
+  { nome: 'erro', hex: '#d64545', uso: 'Pedido reprovado, mensagens de erro, excluir' },
+  { nome: 'aviso', hex: '#e0a325', uso: 'Pedido em análise, alertas' },
+  { nome: 'info', hex: '#457b9d', uso: 'Pedido aprovado, dicas e informações' },
+]
+
+export const semanticos = [
+  { token: '--cor-fundo', uso: 'Fundo da página', claro: '#f4f6f9', escuro: '#0d1218' },
+  { token: '--cor-superficie', uso: 'Cards, modais, tabelas', claro: '#ffffff', escuro: '#151c24' },
+  { token: '--cor-superficie-2', uso: 'Inputs desabilitados, camadas', claro: '#eef1f4', escuro: '#1f2933' },
+  { token: '--cor-texto', uso: 'Texto principal', claro: '#1f2933', escuro: '#f4f6f9' },
+  { token: '--cor-texto-secundario', uso: 'Legendas, labels, metadados', claro: '#4b5563', escuro: '#9aa3af' },
+  { token: '--cor-marca', uso: 'Botão primário, navbar', claro: '#1d3557', escuro: '#84a9cf' },
+  { token: '--cor-marca-hover', uso: 'Hover do botão primário', claro: '#24476b', escuro: '#b0c9e2' },
+  { token: '--cor-texto-marca', uso: 'Links e títulos', claro: '#1d3557', escuro: '#84a9cf' },
+  { token: '--cor-destaque', uso: 'CTA secundário, ícone da marca', claro: '#f4a261', escuro: '#f4a261' },
+  { token: '--cor-texto-destaque', uso: 'Preços e valores em laranja', claro: '#b4561a', escuro: '#f7b980' },
+  { token: '--cor-borda', uso: 'Bordas padrão', claro: '#dde2e8', escuro: '#374151' },
+  { token: '--cor-borda-forte', uso: 'Separadores, inputs em hover', claro: '#c4cbd4', escuro: '#4b5563' },
+  { token: '--cor-foco', uso: 'Anel de foco do teclado', claro: '#457b9d', escuro: '#f7b980' },
+]
